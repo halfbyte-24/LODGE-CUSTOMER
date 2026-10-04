@@ -1,0 +1,190 @@
+/* Contact & Concierge Styles */
+.contact-section {
+  position: relative;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.location-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 56px;
+}
+
+.loc-info-card {
+  padding: 32px 28px;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loc-icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(203, 163, 88, 0.1);
+  border: 1px solid var(--border-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.loc-info-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.loc-bold {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--gold-light);
+  margin-bottom: 4px;
+}
+
+.loc-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.loc-tag {
+  margin-top: auto;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px 12px;
+  border-radius: 50px;
+  border: 1px solid var(--border-subtle);
+}
+
+/* Split Grid */
+.contact-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.contact-form-column {
+  padding: 38px 42px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+}
+
+.form-column-title {
+  font-size: 1.85rem;
+  margin-top: 6px;
+}
+
+.form-column-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 8px 0 24px;
+}
+
+.concierge-inquiry-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 20px; }
+.mt-3 { margin-top: 14px; }
+
+.sent-success-box {
+  text-align: center;
+  padding: 40px 10px;
+}
+
+.sent-success-box h4 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.sent-success-box p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* FAQs Column */
+.faqs-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-heading {
+  font-size: 1.85rem;
+  margin-bottom: 24px;
+}
+
+.faqs-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.faq-item-open {
+  border-color: var(--border-gold);
+  background: rgba(203, 163, 88, 0.04);
+}
+
+.faq-question-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  text-align: left;
+  gap: 16px;
+  background: transparent;
+  color: #ffffff;
+}
+
+.faq-q-text {
+  font-size: 1.05rem;
+  font-family: var(--font-serif);
+  line-height: 1.35;
+}
+
+.faq-toggle-icon {
+  color: var(--gold-light);
+  flex-shrink: 0;
+}
+
+.faq-answer-panel {
+  padding: 0 22px 20px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 14px;
+}
+
+@media (max-width: 1024px) {
+  .location-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-split-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-form-column {
+    padding: 24px 20px;
+  }
+}

@@ -1,0 +1,250 @@
+/* Hotel Navbar Styles */
+.hotel-navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  transition: all 0.3s ease;
+  padding: 16px 0;
+}
+
+.navbar-transparent {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.navbar-sticky {
+  background: var(--nav-bg-scrolled);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Logo */
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.brand-primary-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.brand-sub-title {
+  font-size: 0.65rem;
+  letter-spacing: 0.26em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+/* Desktop Navigation Links */
+.desktop-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.desktop-nav-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.2s ease;
+  text-transform: uppercase;
+}
+
+.desktop-nav-link:hover {
+  color: var(--accent-gold);
+}
+
+.nav-link-active {
+  color: var(--accent-gold);
+}
+
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--accent-gold);
+}
+
+/* Actions Right */
+.navbar-action-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-book-btn {
+  padding: 10px 20px;
+  font-size: 0.8rem;
+}
+
+.mobile-hamburger-btn {
+  display: none;
+  color: var(--text-primary);
+  padding: 4px;
+}
+
+/* Mobile Drawer */
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 1050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.backdrop-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 82%;
+  max-width: 340px;
+  background: var(--bg-surface);
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.4);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.drawer-open {
+  transform: translateX(0);
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.drawer-hotel-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.drawer-hotel-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--accent-gold);
+  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+.drawer-close-btn {
+  color: var(--text-primary);
+  padding: 6px;
+}
+
+.mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 20px 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.mobile-drawer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer-item:hover,
+.item-active {
+  background: var(--accent-gold-soft);
+  color: var(--accent-gold);
+}
+
+.drawer-arrow {
+  color: var(--text-muted);
+}
+
+.mobile-drawer-footer {
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.drawer-phone-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.w-100 { width: 100%; }
+.mb-3 { margin-bottom: 12px; }
+
+/* Responsive Breakpoints */
+@media (max-width: 1080px) {
+  .desktop-nav-menu {
+    display: none;
+  }
+  .mobile-hamburger-btn {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-primary-name {
+    font-size: 1.55rem;
+  }
+  .nav-book-btn span {
+    display: none;
+  }
+  .nav-book-btn {
+    padding: 8px 12px;
+  }
+}

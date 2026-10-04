@@ -1,0 +1,362 @@
+/* ============================================================
+   Footer — AMONTRON HOTEL & RESTAURANT
+   ============================================================ */
+
+.site-footer {
+  background: #0f1420;
+  color: #c8cfd8;
+  font-size: 0.9rem;
+}
+
+.footer-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Newsletter Strip ── */
+.footer-newsletter-strip {
+  background: #1a2235;
+  border-bottom: 1px solid rgba(200, 146, 42, 0.25);
+}
+
+.newsletter-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.newsletter-text h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.newsletter-text p {
+  color: #8a95a3;
+  font-size: 0.88rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.newsletter-form input[type="email"] {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  width: 280px;
+  max-width: 100%;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.newsletter-form input[type="email"]:focus {
+  outline: none;
+  border-color: #c8922a;
+}
+
+.newsletter-form input[type="email"]::placeholder {
+  color: #5a6070;
+}
+
+.footer-subscribe-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #c8922a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 22px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+
+.footer-subscribe-btn:hover:not(:disabled) {
+  background: #e0a83a;
+  transform: translateY(-1px);
+}
+
+.footer-subscribe-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.sub-success {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4ade80;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* ── Main Body ── */
+.footer-main {
+  padding: 56px 0 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.3fr;
+  gap: 40px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Brand */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.footer-logo-icon {
+  color: #c8922a;
+  flex-shrink: 0;
+}
+
+.footer-brand-name {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.12em;
+}
+
+.footer-brand-sub {
+  display: block;
+  font-size: 0.7rem;
+  color: #c8922a;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.footer-description {
+  color: #7a8694;
+  font-size: 0.86rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #8a95a3;
+  text-decoration: none;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+
+.footer-contact-item:hover {
+  color: #c8922a;
+}
+
+.footer-contact-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #c8922a;
+}
+
+/* Headings */
+.footer-heading {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #c8922a;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(200, 146, 42, 0.2);
+}
+
+/* Links */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-links a {
+  color: #8a95a3;
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s, padding-left 0.2s;
+}
+
+.footer-links a:hover {
+  color: #c8922a;
+  padding-left: 4px;
+}
+
+/* Reserve */
+.footer-reserve-text {
+  color: #7a8694;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.footer-book-btn {
+  display: inline-block;
+  background: #c8922a;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 22px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  width: 100%;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.footer-book-btn:hover {
+  background: #e0a83a;
+  transform: translateY(-1px);
+}
+
+.footer-timing {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-timing p {
+  font-size: 0.84rem;
+  color: #7a8694;
+}
+
+.footer-timing strong {
+  color: #b0bac4;
+}
+
+/* ── Bottom Bar ── */
+.footer-bottom {
+  padding: 20px 0;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom p {
+  font-size: 0.82rem;
+  color: #5a6070;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-bottom-links a {
+  color: #5a6070;
+  text-decoration: none;
+  font-size: 0.82rem;
+  transition: color 0.2s;
+}
+
+.footer-bottom-links a:hover {
+  color: #c8922a;
+}
+
+.footer-bottom-links span {
+  color: #3a4050;
+}
+
+.back-to-top-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(200, 146, 42, 0.15);
+  border: 1px solid rgba(200, 146, 42, 0.3);
+  color: #c8922a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.back-to-top-btn:hover {
+  background: #c8922a;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-brand-col {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-brand-col {
+    grid-column: auto;
+  }
+  .newsletter-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .newsletter-form {
+    width: 100%;
+  }
+  .newsletter-form input[type="email"] {
+    width: 100%;
+  }
+  .footer-bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
