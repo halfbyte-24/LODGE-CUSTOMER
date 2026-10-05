@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { ROOMS, VIP_ENHANCEMENTS, RESORT_INFO } from '../data/lodgeData';
-import { createBooking } from '../lib/supabaseClient';
+import { createBooking } from '../lib/bookingService';
 import './BookingModal.css';
 
 export default function BookingModal({ isOpen, onClose, initialData = {} }) {

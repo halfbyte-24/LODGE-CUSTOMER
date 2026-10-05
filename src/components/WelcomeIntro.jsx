@@ -18,7 +18,7 @@ export default function WelcomeIntro() {
 
             <p className="welcome-lead">
               Situated in Midnapore, <strong>{HOTEL_INFO.fullName}</strong> is crafted to offer travelers 
-              a peaceful retreat blending thoughtful comfort, attentive hospitality, and delicious dining.
+              a comfortable hotel stay blending thoughtful comfort, attentive hospitality, and delicious dining.
             </p>
 
             <p className="welcome-body">

@@ -1,9 +1,39 @@
 import React from 'react';
-import { ShieldCheck, Compass, Trees, Sun, Award } from 'lucide-react';
-import { RESORT_INFO } from '../data/lodgeData';
+import { ShieldCheck, Wifi, Zap, Utensils, Award, UtensilsCrossed } from 'lucide-react';
+import { HOTEL_INFO } from '../config/hotelInfo';
 import './Story.css';
 
+// AMONTRON hotel highlights — safe static data, no external dependency
+const AMONTRON_HIGHLIGHTS = [
+  {
+    icon: ShieldCheck,
+    title: 'Round-the-Clock Service',
+    desc: '24-hour front desk, room service, and security ensuring a safe and comfortable stay.'
+  },
+  {
+    icon: Wifi,
+    title: 'High-Speed Wi-Fi',
+    desc: 'Seamless high-bandwidth internet in all rooms and common areas — ideal for business and leisure.'
+  },
+  {
+    icon: Zap,
+    title: 'Full Power Backup',
+    desc: 'Generator backup ensures uninterrupted electricity, cooling, and water supply throughout your stay.'
+  },
+];
+
+// Recognitions / milestones — safe static data
+const AMONTRON_RECOGNITIONS = [
+  'Guests\' Choice — 3 Years Running',
+  'TripAdvisor Certificate of Excellence',
+  '4-Star Certified Property',
+  'ISO Hygiene Compliant',
+];
+
 export default function HeritageStory() {
+  // Safe guard — always an array
+  const recognitions = Array.isArray(AMONTRON_RECOGNITIONS) ? AMONTRON_RECOGNITIONS : [];
+
   return (
     <section id="story" className="story-section">
       <div className="section-wrapper">
@@ -12,84 +42,74 @@ export default function HeritageStory() {
           
           {/* Narrative Column */}
           <div className="story-text-column">
-            <span className="section-tag">ARCHITECTURAL HERITAGE</span>
-            <h2 className="story-main-heading">Monolithic Simplicity in the High Alps</h2>
+            <span className="section-tag">OUR STORY</span>
+            <h2 className="story-main-heading">Warm Hospitality, Modern Comfort</h2>
             <div className="gold-divider story-left-divider" />
             
             <p className="story-lead-p">
-              Founded on the belief that true luxury is silence, space, and unbroken communion with the wild, 
-              Aura Lodge was conceived by Pritzker-winning alpine architects who spent four years mapping the celestial angles, 
-              wind currents, and snow drifts at 7,850 feet elevation.
+              AMONTRON HOTEL &amp; RESTAURANT was founded on a simple belief — that every guest deserves a 
+              welcoming, comfortable, and memorable stay. Located in the heart of Midnapore, we have served 
+              thousands of business travellers, families, and tourists with genuine warmth and professional care.
             </p>
 
             <p className="story-body-p">
-              Every timber beam is reclaimed Swiss larch, charred using the ancient Japanese <em>yakisugi</em> method 
-              to withstand extreme mountain freezes without chemical varnishes. The foundation is rooted directly into 
-              prehistoric gneiss granite, creating an acoustic sanctuary where the howling blizzards outside dissolve into peaceful quietude.
+              Our thoughtfully designed rooms, multi-cuisine restaurant, and 24-hour hospitality make AMONTRON 
+              the preferred choice for travellers visiting West Bengal. From a hearty breakfast to a restful night's 
+              sleep — every detail is crafted with care to make you feel at home.
             </p>
 
-            {/* Sustainability & Pillars */}
+            {/* Service Pillars */}
             <div className="story-pillars-grid">
-              <div className="pillar-item">
-                <Trees size={22} className="text-gold" />
-                <div>
-                  <strong>Zero-Carbon Footprint</strong>
-                  <span>100% heated by subterranean geothermal loops & high-altitude solar glazing.</span>
-                </div>
-              </div>
-
-              <div className="pillar-item">
-                <Sun size={22} className="text-gold" />
-                <div>
-                  <strong>Pure Glacial Aquifer</strong>
-                  <span>Every tap and thermal pool flows with natural, untreated mineral snowmelt.</span>
-                </div>
-              </div>
-
-              <div className="pillar-item">
-                <ShieldCheck size={22} className="text-gold" />
-                <div>
-                  <strong>Heritage Preservation</strong>
-                  <span>5% of every reservation funds the preservation of endangered alpine flora.</span>
-                </div>
-              </div>
+              {AMONTRON_HIGHLIGHTS.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <div key={i} className="pillar-item">
+                    <Icon size={22} className="text-gold" />
+                    <div>
+                      <strong>{item.title}</strong>
+                      <span>{item.desc}</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Awards Strip */}
-            <div className="story-awards-bar">
-              {RESORT_INFO.awards.map((award, i) => (
-                <div key={i} className="award-badge-item">
-                  <Award size={14} className="text-gold" />
-                  <span>{award}</span>
-                </div>
-              ))}
-            </div>
-
+            {/* Recognition Strip */}
+            {recognitions.length > 0 && (
+              <div className="story-awards-bar">
+                {recognitions.map((rec, i) => (
+                  <div key={i} className="award-badge-item">
+                    <Award size={14} className="text-gold" />
+                    <span>{rec}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Visual Showcase Column */}
           <div className="story-visual-column">
             <div className="story-media-main glass-card">
               <img 
-                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80" 
-                alt="Aura Lodge Architecture at Twilight" 
+                src="https://images.unsplash.com/photo-1551882547-ff40c4eacf6b?auto=format&fit=crop&w=1200&q=80" 
+                alt="AMONTRON Hotel Lobby and Reception" 
                 className="story-main-img" 
               />
               <div className="story-img-badge">
-                <span className="elev-number">7,850 FT</span>
-                <span className="elev-label">ELEVATION SANCTUARY</span>
+                <span className="elev-number">MIDNAPORE</span>
+                <span className="elev-label">WEST BENGAL, INDIA</span>
               </div>
             </div>
 
             <div className="story-media-sub glass-card">
               <img 
-                src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" 
-                alt="Subterranean Wine Vault" 
+                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80" 
+                alt="AMONTRON Multi-Cuisine Restaurant" 
                 className="story-sub-img" 
               />
               <div className="story-sub-overlay">
-                <strong>Handcrafted Granite Vaults</strong>
-                <span>4,000+ Vintage Bottles Carved in Rock</span>
+                <strong>Multi-Cuisine Restaurant</strong>
+                <span>North Indian · Tandoor · Chinese · Bengali</span>
               </div>
             </div>
           </div>

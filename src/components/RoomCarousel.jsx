@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Users, 
   Maximize2, 
@@ -11,12 +12,14 @@ import {
   ArrowRight,
   Flame,
   LayoutGrid,
-  SlidersHorizontal
+  SlidersHorizontal,
+  CheckCircle2
 } from 'lucide-react';
-import { ROOMS, ROOM_CATEGORIES } from '../data/lodgeData';
+import { ROOMS, ROOM_CATEGORIES } from '../data/hotelData';
 import './RoomShowcase.css';
 
 export default function RoomCarousel({ onSelectRoom, onQuickView }) {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('all');
   const [viewMode, setViewMode] = useState('carousel'); // 'carousel' | 'grid'
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,7 +28,7 @@ export default function RoomCarousel({ onSelectRoom, onQuickView }) {
   // Filtered rooms
   const filteredRooms = activeCategory === 'all'
     ? ROOMS
-    : ROOMS.filter(r => r.category === activeCategory);
+    : ROOMS.filter(r => r.id === activeCategory || r.category === activeCategory);
 
   // Reset index when category changes
   useEffect(() => {
@@ -54,12 +57,12 @@ export default function RoomCarousel({ onSelectRoom, onQuickView }) {
         
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-tag">ARCHITECTURAL ACCOMMODATION</span>
-          <h2 className="section-title">The Alpine Sanctuaries</h2>
+          <span className="section-tag">ACCOMMODATION</span>
+          <h2 className="section-title">ROOMS &amp; SUITES</h2>
           <div className="gold-divider" />
           <p className="section-description">
-            Constructed of blackened larch, hand-chiseled Valais granite, and thermal triple-glazed panoramic glass. 
-            Each sanctuary is an intimate redoubt of silence, tactile warmth, and unmatched peak views.
+            Experience restful stays in our thoughtfully furnished, air-conditioned rooms and suites. 
+            Enjoy plush bedding, high-speed Wi-Fi, modern ensuite bathrooms, and 24-hour room service.
           </p>
         </div>
 
@@ -143,12 +146,12 @@ export default function RoomCarousel({ onSelectRoom, onQuickView }) {
                         />
                         <div className="room-card-gradient" />
                         <span className="room-view-badge">
-                          <Eye size={12} />
-                          {room.view}
+                          <CheckCircle2 size={12} className="text-success" />
+                          <span>Available</span>
                         </span>
                         <div className="room-price-tag">
-                          <span className="price-curr">$</span>
-                          <span className="price-val">{room.pricePerNight.toLocaleString()}</span>
+                          <span className="price-curr">₹</span>
+                          <span className="price-val">{(room.pricePerNight || room.price).toLocaleString()}</span>
                           <span className="price-unit">/ night</span>
                         </div>
                       </div>
@@ -156,29 +159,34 @@ export default function RoomCarousel({ onSelectRoom, onQuickView }) {
                       {/* Room Card Body */}
                       <div className="room-card-body">
                         <div className="room-card-top">
-                          <span className="room-tagline">{room.tagline}</span>
+                          <span className="room-tagline">{room.floorInfo || room.tagline}</span>
                           <h3 className="room-name">{room.name}</h3>
                         </div>
 
                         {/* Room Specifications */}
                         <div className="room-specs-grid">
                           <div className="spec-item">
-                            <Maximize2 size={14} className="spec-icon" />
-                            <span>{room.sqft} sq ft ({room.sqm} m²)</span>
-                          </div>
-                          <div className="spec-item">
                             <Users size={14} className="spec-icon" />
-                            <span>Up to {room.maxAdults} Adults, {room.maxChildren} Kids</span>
+                            <span>{room.capacity}</span>
                           </div>
                           <div className="spec-item">
                             <Bed size={14} className="spec-icon" />
                             <span>{room.bedType}</span>
                           </div>
+                          <div className="spec-item">
+                            <Maximize2 size={14} className="spec-icon" />
+                            <span>{room.size || `${room.sqft} sq. ft.`}</span>
+                          </div>
                         </div>
+
+                        {/* Short Description */}
+                        <p className="room-desc-short" style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: '10px 0', lineHeight: 1.5 }}>
+                          {room.description}
+                        </p>
 
                         {/* Highlight Features */}
                         <div className="room-highlights-list">
-                          {room.features.slice(0, 3).map((feat, i) => (
+                          {(room.features || []).slice(0, 3).map((feat, i) => (
                             <div key={i} className="highlight-row">
                               <Check size={14} className="highlight-check" />
                               <span>{feat}</span>
@@ -186,26 +194,20 @@ export default function RoomCarousel({ onSelectRoom, onQuickView }) {
                           ))}
                         </div>
 
-                        {/* Amenity Badges */}
-                        <div className="room-amenity-tags">
-                          {room.amenities.slice(0, 4).map((a, i) => (
-                            <span key={i} className="amenity-chip">{a}</span>
-                          ))}
-                        </div>
-
                         {/* Actions */}
                         <div className="room-card-actions">
-                          <button 
+                          <Link 
+                            to={`/rooms/${room.id}`}
                             className="btn-outline-gold room-btn-details"
-                            onClick={() => onQuickView(room)}
+                            style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                           >
-                            <span>Explore Details</span>
-                          </button>
+                            <span>VIEW DETAILS</span>
+                          </Link>
                           <button 
                             className="btn-primary room-btn-reserve"
                             onClick={() => onSelectRoom(room)}
                           >
-                            <span>Reserve Suite</span>
+                            <span>BOOK NOW</span>
                             <ArrowRight size={15} />
                           </button>
                         </div>
@@ -247,45 +249,48 @@ export default function RoomCarousel({ onSelectRoom, onQuickView }) {
                   />
                   <div className="room-card-gradient" />
                   <span className="room-view-badge">
-                    <Eye size={12} />
-                    {room.view}
+                    <CheckCircle2 size={12} className="text-success" />
+                    <span>Available</span>
                   </span>
                   <div className="room-price-tag">
-                    <span className="price-curr">$</span>
-                    <span className="price-val">{room.pricePerNight.toLocaleString()}</span>
+                    <span className="price-curr">₹</span>
+                    <span className="price-val">{(room.pricePerNight || room.price).toLocaleString()}</span>
                     <span className="price-unit">/ night</span>
                   </div>
                 </div>
 
                 <div className="room-card-body">
-                  <span className="room-tagline">{room.tagline}</span>
+                  <span className="room-tagline">{room.floorInfo || room.tagline}</span>
                   <h3 className="room-name">{room.name}</h3>
 
                   <div className="room-specs-grid">
                     <div className="spec-item">
-                      <Maximize2 size={13} className="spec-icon" />
-                      <span>{room.sqft} sq ft</span>
+                      <Users size={13} className="spec-icon" />
+                      <span>{room.capacity}</span>
                     </div>
                     <div className="spec-item">
-                      <Users size={13} className="spec-icon" />
-                      <span>{room.maxAdults} Guests</span>
+                      <Bed size={13} className="spec-icon" />
+                      <span>{room.bedType}</span>
                     </div>
                   </div>
 
-                  <p className="room-grid-desc">{room.description.slice(0, 110)}...</p>
+                  <p className="room-grid-desc" style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: '10px 0 16px', lineHeight: 1.5 }}>
+                    {room.description}
+                  </p>
 
                   <div className="room-card-actions mt-auto">
-                    <button 
+                    <Link 
+                      to={`/rooms/${room.id}`}
                       className="btn-outline-gold room-btn-details"
-                      onClick={() => onQuickView(room)}
+                      style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                     >
-                      <span>Details</span>
-                    </button>
+                      <span>VIEW DETAILS</span>
+                    </Link>
                     <button 
                       className="btn-primary room-btn-reserve"
                       onClick={() => onSelectRoom(room)}
                     >
-                      <span>Reserve</span>
+                      <span>BOOK NOW</span>
                       <ArrowRight size={14} />
                     </button>
                   </div>

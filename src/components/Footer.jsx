@@ -9,9 +9,6 @@ import {
   CheckCircle2,
   ArrowUp,
   Hotel,
-  Facebook,
-  Instagram,
-  Twitter,
 } from 'lucide-react';
 import { HOTEL_INFO } from '../data/lodgeData';
 import { subscribeNewsletter } from '../lib/supabaseClient';

@@ -5,13 +5,17 @@ const env = (typeof import.meta !== 'undefined' && import.meta.env)
   : (typeof process !== 'undefined' && process.env ? process.env : {});
 
 const supabaseUrl = env.VITE_SUPABASE_URL;
-const supabaseAnonKey = env.VITE_SUPABASE_ANON_KEY;
+// Support both the new publishable key name and the legacy anon key name
+const supabaseAnonKey =
+  env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+  env.VITE_SUPABASE_ANON_KEY;
 
 export const isSupabaseConfigured = Boolean(
   supabaseUrl &&
   supabaseAnonKey &&
   supabaseUrl !== 'https://your-project.supabase.co' &&
-  !supabaseUrl.includes('placeholder')
+  !supabaseUrl.includes('placeholder') &&
+  !supabaseUrl.includes('your-project-id')
 );
 
 // Customer-safe Supabase client (using ONLY public anon key, never service_role)

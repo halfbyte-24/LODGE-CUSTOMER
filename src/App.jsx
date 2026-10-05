@@ -13,6 +13,7 @@ import ReviewsSection from './components/ReviewsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import SupabaseInfoModal from './components/SupabaseInfoModal';
+import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -39,7 +40,7 @@ export default function App() {
   };
 
   return (
-    <div className="aura-lodge-app">
+    <div className="amontron-app">
       {/* Sticky Translucent Glass Navigation */}
       <Navbar 
         onOpenBooking={() => handleOpenBooking()}
@@ -49,36 +50,52 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main id="main-content">
-        {/* Cinematic Multi-Slide Hero with Docked Fast Availability Check */}
-        <HeroSlider 
-          onOpenBooking={handleOpenBooking}
-        />
+        {/* Hero Slider */}
+        <ErrorBoundary>
+          <HeroSlider 
+            onOpenBooking={handleOpenBooking}
+          />
+        </ErrorBoundary>
 
-        {/* Architectural Sanctuaries Showcase & Carousel */}
-        <RoomCarousel 
-          onSelectRoom={handleSelectRoom}
-          onQuickView={handleQuickView}
-        />
+        {/* Rooms & Suites */}
+        <ErrorBoundary>
+          <RoomCarousel 
+            onSelectRoom={handleSelectRoom}
+            onQuickView={handleQuickView}
+          />
+        </ErrorBoundary>
 
-        {/* High Alpine Gastronomy, Interactive Menus & Table Reservations */}
-        <DiningSection />
+        {/* Restaurant & Dining */}
+        <ErrorBoundary>
+          <DiningSection />
+        </ErrorBoundary>
 
-        {/* Curated Expeditions & Bespoke Mountain Adventures */}
-        <ExperienceSection />
+        {/* Hotel Services & Amenities */}
+        <ErrorBoundary>
+          <ExperienceSection />
+        </ErrorBoundary>
 
-        {/* Thermal Springs, Hydrotherapy Circuit & Holistic Spa */}
-        <WellnessSection 
-          onOpenBooking={() => handleOpenBooking()}
-        />
+        {/* Additional Facilities */}
+        <ErrorBoundary>
+          <WellnessSection 
+            onOpenBooking={() => handleOpenBooking()}
+          />
+        </ErrorBoundary>
 
-        {/* The Heritage, Architecture & Ecological Vision */}
-        <HeritageStory />
+        {/* Our Story */}
+        <ErrorBoundary>
+          <HeritageStory />
+        </ErrorBoundary>
 
-        {/* International Acclaim & Verified Guest Impressions */}
-        <ReviewsSection />
+        {/* Guest Reviews */}
+        <ErrorBoundary>
+          <ReviewsSection />
+        </ErrorBoundary>
 
-        {/* Private Concierge Dispatch, Coordinates & FAQs */}
-        <ContactSection />
+        {/* Contact & FAQs */}
+        <ErrorBoundary>
+          <ContactSection />
+        </ErrorBoundary>
       </main>
 
       {/* Rich Footer with Alpine CET Clock & Newsletter */}

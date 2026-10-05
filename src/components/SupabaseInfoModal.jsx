@@ -42,7 +42,7 @@ VITE_SUPABASE_ANON_KEY=your-anon-public-api-key`;
           </div>
           <h2 className="supa-title">Supabase Database Integration</h2>
           <p className="supa-desc">
-            Aura Lodge is built with full Supabase integration ready for production. 
+            AMONTRON HOTEL & RESTAURANT is built with full Supabase integration ready for production. 
             Currently operating in {isSupabaseConfigured ? 'LIVE Supabase cloud mode' : 'fault-tolerant local demonstration mode with persistent browser storage'}.
           </p>
         </div>

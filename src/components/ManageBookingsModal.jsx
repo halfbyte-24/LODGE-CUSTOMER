@@ -72,7 +72,7 @@ export default function ManageBookingsModal({ isOpen, onClose }) {
           <span className="badge-gold">GUEST CONCIERGE PORTAL</span>
           <h2 className="manage-title">Manage Your Reservations</h2>
           <p className="manage-subtitle">
-            Look up your reservation status, review alpine perks, or request itinerary modifications.
+            Look up your reservation status, review booking details, or request itinerary modifications.
           </p>
 
           {/* Search Form */}
@@ -81,7 +81,7 @@ export default function ManageBookingsModal({ isOpen, onClose }) {
               <Search size={18} className="search-icon" />
               <input 
                 type="text" 
-                placeholder="Enter booking reference (e.g. AURA-88219) or email"
+                placeholder="Enter booking reference (e.g. AMN-88219) or email"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 className="search-input"

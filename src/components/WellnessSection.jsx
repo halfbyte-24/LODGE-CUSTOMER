@@ -1,132 +1,118 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
-  Sparkles, 
-  Droplet, 
-  Wind, 
-  Sun, 
-  Check, 
-  Clock, 
-  Heart,
-  ArrowRight
+  Snowflake,
+  Wifi,
+  Car,
+  Zap,
+  BellRing,
+  Shield,
+  Droplets,
+  WashingMachine,
+  ConciergeBell,
+  ArrowRight,
+  Check
 } from 'lucide-react';
 import './Wellness.css';
 
+const FACILITY_GROUPS = [
+  {
+    id: 'stay',
+    heading: 'Room Amenities',
+    items: [
+      { icon: Snowflake, label: 'Individual Split AC', desc: 'Whisper-quiet climate control in every room.' },
+      { icon: Wifi, label: 'High-Speed Wi-Fi', desc: 'Complimentary broadband in all rooms & common areas.' },
+      { icon: Droplets, label: '24/7 Hot Water', desc: 'Continuous hot water supply via electric geysers.' },
+      { icon: Zap, label: 'Power Backup', desc: 'Uninterrupted electricity via full generator backup.' },
+    ]
+  },
+  {
+    id: 'service',
+    heading: 'Guest Services',
+    items: [
+      { icon: BellRing, label: 'Round-the-Clock Room Service', desc: 'Order fresh meals any hour of the day or night.' },
+      { icon: ConciergeBell, label: '24/7 Front Desk', desc: 'Courteous staff always available for assistance.' },
+      { icon: WashingMachine, label: 'Laundry Service', desc: 'Same-day laundry and dry-cleaning on request.' },
+      { icon: Shield, label: '24-Hour Security', desc: 'CCTV surveillance and in-house security team.' },
+    ]
+  },
+  {
+    id: 'property',
+    heading: 'Property Facilities',
+    items: [
+      { icon: Car, label: 'Free Secure Parking', desc: 'Dedicated on-premises parking for all guests.' },
+      { icon: ConciergeBell, label: 'Banquet & Conference', desc: 'Spacious halls for weddings, meetings, and events.' },
+      { icon: BellRing, label: 'Travel Assistance', desc: 'Local sightseeing, transfers, and tour arrangements.' },
+      { icon: Wifi, label: 'Business Support', desc: 'Printing, courier, and corporate stay packages.' },
+    ]
+  }
+];
+
 export default function WellnessSection({ onOpenBooking }) {
-  const [activeTab, setActiveTab] = useState('hydrotherapy');
-
-  const spaTreatments = [
-    {
-      id: "alpine-arnica",
-      title: "Glacial Arnica & Obsidian Stone Therapy",
-      duration: "90 Minutes",
-      price: "$340",
-      description: "Heated basalt river stones anointed with hand-harvested Valais arnica and pine resin to release deep muscle tension after high-altitude skiing."
-    },
-    {
-      id: "botanical-detox",
-      title: "Wild Juniper & Birch Leaf Herbal Wrap",
-      duration: "75 Minutes",
-      price: "$290",
-      description: "Gentle lymphatic dry-brushing followed by an intoxicating warm wrap of foraged alpine herbs, organic clay, and mountain birch oils."
-    },
-    {
-      id: "cellular-facial",
-      title: "Swiss Edelweiss Cellular Radiance Facial",
-      duration: "60 Minutes",
-      price: "$310",
-      description: "Potent high-altitude Edelweiss stem cells and cryo-sculpting oxygen spheres restore moisture barrier and luminous alpine radiance."
-    }
-  ];
-
   return (
-    <section id="wellness" className="wellness-section">
+    <section id="facilities" className="wellness-section">
       <div className="section-wrapper">
         
         <div className="section-header">
-          <span className="section-tag">SANCTUARY OF THE ELEMENTS</span>
-          <h2 className="section-title">The Alpine Thermal Spa & Springs</h2>
+          <span className="section-tag">SERVICES & FACILITIES</span>
+          <h2 className="section-title">All-Inclusive Hotel Amenities</h2>
           <div className="gold-divider" />
           <p className="section-description">
-            Subterranean thermal grottos heated naturally by deep alpine aquifers to 38°C. 
-            Immerse yourself in mineral-dense mountain waters while heavy powder snow drifts across the granite summits.
+            AMONTRON HOTEL &amp; RESTAURANT provides modern amenities and attentive services 
+            to ensure a comfortable, safe, and fully equipped stay for every guest.
           </p>
         </div>
 
-        {/* Feature Grid */}
+        {/* Facility Groups */}
         <div className="wellness-feature-grid">
-          
-          <div className="wellness-highlight-card glass-card">
-            <div className="highlight-icon-box">
-              <Droplet size={26} className="text-gold" />
+          {FACILITY_GROUPS.map((group) => (
+            <div key={group.id} className="wellness-highlight-card glass-card">
+              <h3 style={{ marginBottom: '16px', fontSize: '1.1rem', color: 'var(--text-primary)' }}>{group.heading}</h3>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {group.items.map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                      <Icon size={18} className="text-gold" style={{ marginTop: '2px', flexShrink: 0 }} />
+                      <div>
+                        <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-primary)' }}>{item.label}</div>
+                        <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '2px' }}>{item.desc}</div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <h3>Heated Mineral Infinity Pool</h3>
-            <p>
-              Suspended over the valley edge at 38°C (100°F). Pure thermal mineral water rich in magnesium, calcium, and sulfur for accelerated cellular recovery.
-            </p>
-            <ul className="highlight-list">
-              <li><Check size={14} className="text-gold" /> Constant thermal circulation</li>
-              <li><Check size={14} className="text-gold" /> Panoramic Matterhorn ridge views</li>
-              <li><Check size={14} className="text-gold" /> Evening firepit illumination</li>
-            </ul>
-          </div>
-
-          <div className="wellness-highlight-card glass-card">
-            <div className="highlight-icon-box">
-              <Wind size={26} className="text-gold" />
-            </div>
-            <h3>Obsidian Steam & Cedar Saunas</h3>
-            <p>
-              Hand-built Finnish dry saunas lined with 200-year-old aged cedarwood, alongside black obsidian steam grottos infused with mountain pine and eucalyptus vapor.
-            </p>
-            <ul className="highlight-list">
-              <li><Check size={14} className="text-gold" /> 90°C Finnish Dry Birch Sauna</li>
-              <li><Check size={14} className="text-gold" /> 45°C 100% Humidity Herbal Steam</li>
-              <li><Check size={14} className="text-gold" /> Cryo Ice Fall & Cold Plunge (8°C)</li>
-            </ul>
-          </div>
-
-          <div className="wellness-highlight-card glass-card">
-            <div className="highlight-icon-box">
-              <Sun size={26} className="text-gold" />
-            </div>
-            <h3>Acoustic Sound Sanctum</h3>
-            <p>
-              Soundproof cocoon lined with acoustic charred timber. Daily restorative Tibetan bowl meditations, guided breathwork, and zero-gravity waterbeds.
-            </p>
-            <ul className="highlight-list">
-              <li><Check size={14} className="text-gold" /> 432 Hz Solfeggio sound immersion</li>
-              <li><Check size={14} className="text-gold" /> Handcrafted Himalayan bronze bowls</li>
-              <li><Check size={14} className="text-gold" /> High-altitude sleep optimization</li>
-            </ul>
-          </div>
-
+          ))}
         </div>
 
-        {/* Treatments Showcase */}
-        <div className="wellness-treatments-box glass-panel">
+        {/* CTA Box */}
+        <div className="wellness-treatments-box glass-panel" style={{ marginTop: '2.5rem' }}>
           <div className="treatments-header">
             <div>
-              <span className="badge-gold">SPA MENU HIGHLIGHTS</span>
-              <h3 className="treatments-title">Signature Holistic Therapies</h3>
+              <span className="badge-gold">BOOK YOUR STAY</span>
+              <h3 className="treatments-title">Reserve a Room at AMONTRON</h3>
             </div>
-            <button className="btn-primary" onClick={() => onOpenBooking()}>
-              <Heart size={15} />
-              <span>Book Spa Stay</span>
+            <button className="btn-primary" onClick={() => typeof onOpenBooking === 'function' && onOpenBooking()}>
+              <ArrowRight size={15} />
+              <span>Check Availability</span>
             </button>
           </div>
 
-          <div className="treatments-list">
-            {spaTreatments.map((t) => (
-              <div key={t.id} className="treatment-item">
+          <div className="treatments-list" style={{ paddingTop: '1rem' }}>
+            {[
+              { label: 'Check-In Time', value: '12:00 PM (Noon)' },
+              { label: 'Check-Out Time', value: '11:00 AM' },
+              { label: 'Cancellation Policy', value: 'Free cancellation 48 hours before check-in' },
+              { label: 'Payment', value: 'Cash, UPI, Card — pay at property' },
+            ].map((row, i) => (
+              <div key={i} className="treatment-item">
                 <div className="treatment-top">
-                  <h4 className="treatment-name">{t.title}</h4>
+                  <h4 className="treatment-name">{row.label}</h4>
                   <div className="treatment-dots" />
                   <div className="treatment-price-wrap">
-                    <span className="t-duration">{t.duration}</span>
-                    <span className="t-price">{t.price}</span>
+                    <span className="t-price" style={{ fontSize: '0.9rem' }}>{row.value}</span>
                   </div>
                 </div>
-                <p className="treatment-desc">{t.description}</p>
               </div>
             ))}
           </div>

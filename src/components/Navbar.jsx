@@ -4,7 +4,8 @@ import { Menu, X, Calendar, ChevronRight, Phone } from 'lucide-react';
 import { HOTEL_INFO } from '../config/hotelInfo';
 import './Navbar.css';
 
-export default function Navbar({ onOpenBookingModal }) {
+export default function Navbar({ onOpenBookingModal, onOpenBooking, onOpenLookup, onOpenSupabaseInfo }) {
+  const handleBooking = onOpenBooking || onOpenBookingModal;
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -86,7 +87,7 @@ export default function Navbar({ onOpenBookingModal }) {
           <div className="navbar-action-right">
             <button 
               className="btn-gold nav-book-btn"
-              onClick={onOpenBookingModal}
+              onClick={handleBooking}
               aria-label="Open Room Booking Form"
             >
               <Calendar size={15} />
@@ -148,7 +149,7 @@ export default function Navbar({ onOpenBookingModal }) {
               className="btn-gold w-100 mb-3"
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenBookingModal();
+                if (typeof handleBooking === 'function') handleBooking();
               }}
             >
               <Calendar size={16} />

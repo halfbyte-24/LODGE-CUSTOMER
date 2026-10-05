@@ -58,53 +58,214 @@ export const HERO_SLIDES = [
   }
 ];
 
-// 2. ROOMS & SUITES
-export const ROOMS = [
+// 2. PHYSICAL ROOM INVENTORY (AUTHORITATIVE: 3 FLOORS x 3 ROOMS = 9 TOTAL ROOMS)
+export const PHYSICAL_ROOMS = [
+  // FLOOR 1
   {
-    id: "deluxe-ac-room",
-    name: "Deluxe AC Room",
-    type: "Deluxe Room",
+    id: "a1010000-0001-4000-8000-000000000101",
+    room_number: "101",
+    floor: 1,
+    room_type_id: "standard-room",
+    price: 1899,
+    status: "available",
+    is_active: true
+  },
+  {
+    id: "a1020000-0001-4000-8000-000000000102",
+    room_number: "102",
+    floor: 1,
+    room_type_id: "standard-room",
+    price: 1899,
+    status: "available",
+    is_active: true
+  },
+  {
+    id: "a1030000-0001-4000-8000-000000000103",
+    room_number: "103",
+    floor: 1,
+    room_type_id: "standard-room",
+    price: 1899,
+    status: "available",
+    is_active: true
+  },
+
+  // FLOOR 2
+  {
+    id: "b2010000-0002-4000-8000-000000000201",
+    room_number: "201",
+    floor: 2,
+    room_type_id: "deluxe-room",
     price: 2499,
+    status: "available",
+    is_active: true
+  },
+  {
+    id: "b2020000-0002-4000-8000-000000000202",
+    room_number: "202",
+    floor: 2,
+    room_type_id: "deluxe-room",
+    price: 2499,
+    status: "available",
+    is_active: true
+  },
+  {
+    id: "b2030000-0002-4000-8000-000000000203",
+    room_number: "203",
+    floor: 2,
+    room_type_id: "deluxe-room",
+    price: 2499,
+    status: "available",
+    is_active: true
+  },
+
+  // FLOOR 3
+  {
+    id: "c3010000-0003-4000-8000-000000000301",
+    room_number: "301",
+    floor: 3,
+    room_type_id: "super-deluxe-room",
+    price: 3499,
+    status: "available",
+    is_active: true
+  },
+  {
+    id: "c3020000-0003-4000-8000-000000000302",
+    room_number: "302",
+    floor: 3,
+    room_type_id: "super-deluxe-room",
+    price: 3499,
+    status: "available",
+    is_active: true
+  },
+  {
+    id: "c3030000-0003-4000-8000-000000000303",
+    room_number: "303",
+    floor: 3,
+    room_type_id: "super-deluxe-room",
+    price: 3499,
+    status: "available",
+    is_active: true
+  }
+];
+
+// PUBLIC CUSTOMER-FACING ROOM TYPES
+export const ROOM_TYPES = [
+  {
+    id: "standard-room",
+    typeId: "standard-room",
+    category: "standard-room",
+    name: "Standard Room",
+    type: "Standard Room",
+    tagline: "Comfortable accommodation with modern amenities",
+    floorInfo: "Floor 1 (3 Rooms: 101, 102, 103)",
+    price: 1899,
+    pricePerNight: 1899,
+    originalPrice: 2299,
+    capacity: "2 Guests",
+    maxAdults: 2,
+    maxChildren: 1,
+    bedType: "1 Double Bed",
+    size: "240 sq. ft.",
+    sqft: 240,
+    view: "City / Courtyard View",
+    available: true,
+    availableRoomsCount: 3,
+    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=85",
+    gallery: [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=85",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=85",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=85"
+    ],
+    description: "Comfortable air-conditioned room offering complete privacy, comfortable double bedding, clean linen, high-speed Wi-Fi, flat-screen TV, and essential modern conveniences. Ideal for solo travelers and couples.",
+    amenities: [
+      "Air Conditioning",
+      "Complimentary Wi-Fi",
+      "32\" LED Flat Screen TV",
+      "24/7 Hot & Cold Water",
+      "Daily Housekeeping",
+      "24-Hour Room Service"
+    ],
+    features: [
+      "Individually Controlled Split AC",
+      "High-Speed Wireless Internet",
+      "LED Flat TV with Cable Channels",
+      "24-Hour Geyser Hot & Cold Water",
+      "Daily Sanitized Linen & Housekeeping",
+      "Round-the-Clock In-Room Dining Service"
+    ]
+  },
+  {
+    id: "deluxe-room",
+    typeId: "deluxe-room",
+    category: "deluxe-room",
+    name: "Deluxe Room",
+    type: "Deluxe Room",
+    tagline: "Spacious comfort with premium furnishings",
+    floorInfo: "Floor 2 (3 Rooms: 201, 202, 203)",
+    price: 2499,
+    pricePerNight: 2499,
     originalPrice: 2899,
-    description: "Well-appointed air-conditioned room featuring comfortable king-size bedding, modern ensuite bathroom, high-speed Wi-Fi, and flat-screen TV. Perfect for both business travelers and couples.",
+    capacity: "2 Adults + 1 Child",
+    maxAdults: 2,
+    maxChildren: 1,
+    bedType: "1 King Bed",
+    size: "320 sq. ft.",
+    sqft: 320,
+    view: "City View",
+    available: true,
+    availableRoomsCount: 3,
     image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=85",
     gallery: [
       "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=85"
     ],
-    capacity: "2 Adults + 1 Child",
-    maxAdults: 2,
-    bedType: "1 King Bed",
-    size: "260 sq. ft.",
+    description: "Well-appointed air-conditioned room featuring comfortable king-size bedding, modern ensuite bathroom, mini refrigerator, tea/coffee station, high-speed Wi-Fi, and flat-screen TV. Perfect for leisure travelers and families.",
     amenities: [
       "Split Air Conditioning",
       "Complimentary High-Speed Wi-Fi",
-      "32\" LED Smart TV",
-      "24-Hour Hot & Cold Water",
-      "Complimentary Bottled Water",
+      "40\" LED Smart TV",
+      "Mini Refrigerator",
       "Electric Kettle & Tea Kit",
-      "Daily Housekeeping",
-      "Intercom & Room Service"
+      "24-Hour Hot & Cold Water",
+      "Express Room Service"
+    ],
+    features: [
+      "Whisper-Quiet Split Air Conditioning",
+      "Plush King-Sized Mattress with Fresh Linens",
+      "40\" LED Smart TV with Streaming Apps",
+      "In-Room Mini Refrigerator",
+      "Complimentary Tea & Coffee Maker Station",
+      "24-Hour Hot Water Supply & Premium Toiletries"
     ]
   },
   {
-    id: "executive-king-suite",
-    name: "Executive King Suite",
-    type: "Executive Suite",
+    id: "super-deluxe-room",
+    typeId: "super-deluxe-room",
+    category: "super-deluxe-room",
+    name: "Super Deluxe Room",
+    type: "Super Deluxe Room",
+    tagline: "Elevated luxury with sitting lounge and panoramic views",
+    floorInfo: "Floor 3 (3 Rooms: 301, 302, 303)",
     price: 3499,
+    pricePerNight: 3499,
     originalPrice: 3999,
-    description: "Generously sized suite with an expansive bedroom and dedicated seating lounge. Ideal for corporate executives and guests seeking elevated comfort and privacy.",
+    capacity: "3 Adults or 2 Adults + 2 Children",
+    maxAdults: 3,
+    maxChildren: 2,
+    bedType: "1 Super King Bed + Sofa Seating",
+    size: "420 sq. ft.",
+    sqft: 420,
+    view: "Panoramic View",
+    available: true,
+    availableRoomsCount: 3,
     image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=85",
     gallery: [
       "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1200&q=85"
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85"
     ],
-    capacity: "3 Adults or 2 Adults + 2 Children",
-    maxAdults: 3,
-    bedType: "1 Super King Bed + Sofa Seating",
-    size: "380 sq. ft.",
+    description: "Generously sized top-floor accommodation featuring an expansive master bedroom, dedicated living seating lounge, 43-inch 4K Smart TV, executive work desk, and top-tier amenities. Ideal for families and discerning guests.",
     amenities: [
       "Premium Split AC",
       "Separate Living Lounge Area",
@@ -113,65 +274,27 @@ export const ROOMS = [
       "Executive Work Desk & Chair",
       "Complimentary High-Speed Wi-Fi",
       "Premium Bathroom Toiletries",
-      "24-Hour Hot & Cold Water",
-      "Express Room Service"
-    ]
-  },
-  {
-    id: "royal-family-suite",
-    name: "Royal Family Suite",
-    type: "Family Suite",
-    price: 4499,
-    originalPrice: 5199,
-    description: "Designed for families and groups traveling together. Features dual sleeping configurations, plush sofa lounge, spacious wardrobe storage, and deluxe amenities.",
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=85",
-    gallery: [
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85"
+      "24/7 Priority Room Service"
     ],
-    capacity: "4 Adults + 2 Children",
-    maxAdults: 4,
-    bedType: "2 Queen Beds or 1 King + 2 Twin",
-    size: "520 sq. ft.",
-    amenities: [
-      "Dual Air Conditioning Units",
-      "Two Double Queen Beds",
-      "50\" Smart TV with Cable",
-      "Comfortable Dining / Seating Area",
-      "Mini Refrigerator",
-      "Complimentary High-Speed Wi-Fi",
-      "Tea & Coffee Maker",
-      "Spacious Wardrobes with Locker",
-      "24-Hour Hot Water & Room Service"
-    ]
-  },
-  {
-    id: "standard-ac-room",
-    name: "Premium Standard AC Room",
-    type: "Standard Room",
-    price: 1899,
-    originalPrice: 2199,
-    description: "Cozy and budget-friendly air-conditioned room offering complete privacy, comfortable double bedding, clean linen, and essential modern conveniences.",
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=85",
-    gallery: [
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=85"
-    ],
-    capacity: "2 Adults",
-    maxAdults: 2,
-    bedType: "1 Queen Bed",
-    size: "200 sq. ft.",
-    amenities: [
-      "Efficient Air Conditioning",
-      "Free High-Speed Wi-Fi",
-      "32\" LED TV",
-      "Attached Clean Bathroom",
-      "Geyser / Hot Water",
-      "Daily Housekeeping",
-      "24-Hour Front Desk Support"
+    features: [
+      "Top Floor Location with Scenic Views",
+      "Separate Sofa Seating & Hospitality Corner",
+      "43\" 4K Ultra HD Smart TV",
+      "Executive Work Desk with Power Hub",
+      "Electric Tea Kettle & Refreshment Bar",
+      "24/7 Express In-Room Dining & Dedicated Service"
     ]
   }
+];
+
+// Unified Authoritative ROOMS export consumed across all UI components
+export const ROOMS = ROOM_TYPES;
+
+export const ROOM_CATEGORIES = [
+  { id: "all", label: "All Room Types" },
+  { id: "standard-room", label: "Standard Room" },
+  { id: "deluxe-room", label: "Deluxe Room" },
+  { id: "super-deluxe-room", label: "Super Deluxe Room" }
 ];
 
 // 3. FACILITIES & SERVICES
