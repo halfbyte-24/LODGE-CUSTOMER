@@ -58,46 +58,64 @@ const setLocal = (key, value) => {
  * Sets status: 'pending', source: 'website'
  */
 export async function submitBookingRequest(bookingData) {
-  const sanitizedRequest = {
-    id: 'req_' + Math.random().toString(36).substring(2, 9),
-    reference_no: 'AMN-' + Math.floor(10000 + Math.random() * 90000),
-    guest_name: (bookingData.guest_name || bookingData.name || '').trim(),
-    guest_phone: (bookingData.guest_phone || bookingData.phone || '').trim(),
-    guest_email: (bookingData.guest_email || bookingData.email || '').trim(),
-    room_id: bookingData.room_id || '',
-    room_name: bookingData.room_name || 'Deluxe AC Room',
-    check_in: bookingData.check_in,
-    check_out: bookingData.check_out,
-    guests_count: parseInt(bookingData.guests_count || bookingData.guests || 2, 10),
-    message: (bookingData.message || '').trim(),
-    // Strictly client-safe fixed fields:
-    status: 'pending',
-    source: 'website',
-    created_at: new Date().toISOString()
-  };
+  let customerId = null;
 
   if (isSupabaseConfigured && supabase) {
-    try {
-      const { data, error } = await supabase
-        .from('bookings')
-        .insert([sanitizedRequest])
-        .select()
-        .single();
+    // 1. Create Customer (Blind Insert to preserve privacy and avoid public SELECT policies)
+    const guestEmail = (bookingData.guest_email || bookingData.email || '').trim();
+    const guestPhone = (bookingData.guest_phone || bookingData.phone || '').trim();
+    const guestName = (bookingData.guest_name || bookingData.name || '').trim();
 
-      if (!error && data) {
-        return { success: true, data, source: 'supabase' };
+    customerId = crypto.randomUUID(); // Securely generate ID client-side
+
+    if (guestName || guestPhone) {
+      const { error: customerError } = await supabase
+        .from('customers')
+        .insert([{ 
+          id: customerId, 
+          full_name: guestName || 'Guest', 
+          phone: guestPhone 
+        }]);
+      
+      if (customerError) {
+        return { success: false, error: 'Customer creation failed: ' + customerError.message };
       }
-      console.warn('Supabase insert notice, saving to local fallback storage:', error?.message);
-    } catch (err) {
-      console.warn('Network exception while saving to Supabase:', err);
     }
+
+    // 2. Create Booking matching STAFF schema
+    const bookingNumber = 'req_' + Math.random().toString(36).substring(2, 9);
+    
+    const sanitizedRequest = {
+      booking_number: bookingNumber,
+      customer_id: customerId,
+      // Website guests book a category, not a physical room UUID. We omit room_id 
+      // (which is a UUID in the DB) to prevent invalid syntax errors. 
+      // Staff will assign the physical room later.
+      room_id: null,
+      check_in: bookingData.check_in,
+      check_out: bookingData.check_out,
+      number_of_nights: bookingData.nights || 1,
+      number_of_guests: parseInt(bookingData.guests_count || bookingData.guests || bookingData.adults || 2, 10),
+      booking_status: 'pending', // Requires DB check constraint update
+      created_by: null
+    };
+
+    const { data, error } = await supabase
+      .from('bookings')
+      .insert([sanitizedRequest])
+      .select()
+      .single();
+
+    if (error) {
+      return { success: false, error: 'Booking insertion failed: ' + error.message };
+    }
+    return { success: true, data, source: 'supabase' };
   }
 
-  // Local fallback storage
-  const current = getLocal(STORAGE_KEYS.BOOKINGS, []);
-  setLocal(STORAGE_KEYS.BOOKINGS, [sanitizedRequest, ...current]);
-  return { success: true, data: sanitizedRequest, source: 'local' };
+  return { success: false, error: 'Supabase is not configured' };
 }
+
+
 
 /**
  * Submit Customer Contact / Enquiry Form
@@ -115,25 +133,19 @@ export async function submitCustomerEnquiry(enquiryData) {
   };
 
   if (isSupabaseConfigured && supabase) {
-    try {
-      const { data, error } = await supabase
-        .from('enquiries')
-        .insert([sanitizedEnquiry])
-        .select()
-        .single();
+    const { data, error } = await supabase
+      .from('enquiries')
+      .insert([sanitizedEnquiry])
+      .select()
+      .single();
 
-      if (!error && data) {
-        return { success: true, data, source: 'supabase' };
-      }
-      console.warn('Supabase enquiry notice, saving to local storage:', error?.message);
-    } catch (err) {
-      console.warn('Network exception while submitting enquiry:', err);
+    if (error) {
+      return { success: false, error: 'Enquiry insertion failed: ' + error.message };
     }
+    return { success: true, data, source: 'supabase' };
   }
 
-  const current = getLocal(STORAGE_KEYS.ENQUIRIES, []);
-  setLocal(STORAGE_KEYS.ENQUIRIES, [sanitizedEnquiry, ...current]);
-  return { success: true, data: sanitizedEnquiry, source: 'local' };
+  return { success: false, error: 'Supabase is not configured' };
 }
 
 // ---------------------------------------------------------------------------
