@@ -22,7 +22,6 @@ import { createBooking } from '../lib/bookingService';
 import './BookingModal.css';
 
 export default function BookingModal({ isOpen, onClose, initialData = {} }) {
-  if (!isOpen) return null;
 
   // Multi-step: 1 = Dates/Room, 2 = Guests & VIP, 3 = Guest Info, 4 = Confirmation
   const [step, setStep] = useState(1);
@@ -162,6 +161,8 @@ export default function BookingModal({ isOpen, onClose, initialData = {} }) {
   const printItinerary = () => {
     window.print();
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="modal-overlay" onClick={onClose}>

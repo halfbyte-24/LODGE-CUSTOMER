@@ -1,3 +1,4 @@
+@import './BengaliPages.css';
 /* Pages Shared CSS - AMONTRON HOTEL & RESTAURANT */
 
 .inner-page {
@@ -976,3 +977,5 @@
   color: var(--accent-gold, #cba358);
   margin: 4px 0 0;
 }
+
+

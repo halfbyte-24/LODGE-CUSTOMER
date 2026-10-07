@@ -14,7 +14,6 @@ import { isSupabaseConfigured } from '../lib/supabaseClient';
 import './SupabaseInfoModal.css';
 
 export default function SupabaseInfoModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
 
   const [copied, setCopied] = useState(false);
 
@@ -27,6 +26,8 @@ VITE_SUPABASE_ANON_KEY=your-anon-public-api-key`;
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="modal-overlay" onClick={onClose}>

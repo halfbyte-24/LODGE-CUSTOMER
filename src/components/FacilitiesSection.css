@@ -1,86 +1,91 @@
-/* Facilities Section Styles */
-.facilities-section {
-  padding: 85px 0;
+.bengali-facilities-section {
   background-color: var(--bg-surface);
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.facilities-hotel-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
-}
-
-.facility-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 28px 20px;
+.facilities-header {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: all 0.25s ease;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
 }
 
-.facility-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-gold);
-  transform: translateY(-3px);
+.facilities-description {
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.bengali-facility-card {
+  background: white;
+  border: 1px solid var(--border-subtle);
+  padding: 30px 20px;
+  text-align: center;
+  border-radius: 2px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.bengali-facility-card:hover {
+  transform: translateY(-5px);
   box-shadow: var(--shadow-md);
+  border-color: var(--accent-gold);
 }
 
-.facility-icon-circle {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--accent-gold-soft);
-  color: var(--accent-gold);
-  display: flex;
+.facility-icon {
+  color: var(--accent-terracotta);
+  margin-bottom: 20px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
-  transition: all 0.25s ease;
+  width: 64px;
+  height: 64px;
+  background: var(--bg-surface);
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.3s ease;
 }
 
-.facility-card:hover .facility-icon-circle {
-  background: var(--accent-gold);
-  color: #ffffff;
+.bengali-facility-card:hover .facility-icon {
+  background: var(--accent-terracotta);
+  color: white;
+  border-color: var(--accent-terracotta);
 }
 
 .facility-name {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.96rem;
-  font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
   color: var(--text-primary);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .facility-desc {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  line-height: 1.5;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
-/* Responsive Breakpoints */
-@media (max-width: 1200px) {
-  .facilities-hotel-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.facilities-decoration {
+  position: absolute;
+  right: -50px;
+  bottom: -50px;
+  width: 300px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
 }
 
-@media (max-width: 768px) {
-  .facilities-hotel-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .facilities-hotel-grid {
-    grid-template-columns: 1fr;
-  }
-  .facility-card {
-    padding: 20px;
-  }
+.facilities-decoration img {
+  width: 100%;
 }

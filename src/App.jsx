@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import HeroSlider from './components/HeroSlider';
-import RoomCarousel from './components/RoomCarousel';
-import RoomModal from './components/RoomModal';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import RoomsPage from './pages/RoomsPage';
+import RestaurantPage from './pages/RestaurantPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import FacilitiesPage from './pages/FacilitiesPage';
+import GalleryPage from './pages/GalleryPage';
+import LocationPage from './pages/LocationPage';
+import RoomDetailPage from './pages/RoomDetailPage';
 import BookingModal from './components/BookingModal';
 import ManageBookingsModal from './components/ManageBookingsModal';
-import DiningSection from './components/DiningSection';
-import ExperienceSection from './components/ExperienceSection';
-import WellnessSection from './components/WellnessSection';
-import HeritageStory from './components/HeritageStory';
-import ReviewsSection from './components/ReviewsSection';
-import ContactSection from './components/ContactSection';
-import Footer from './components/Footer';
+import RoomModal from './components/RoomModal';
 import SupabaseInfoModal from './components/SupabaseInfoModal';
-import ErrorBoundary from './components/ErrorBoundary';
+
+// Scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -22,110 +32,65 @@ export default function App() {
   const [isLookupOpen, setIsLookupOpen] = useState(false);
   const [isSupabaseInfoOpen, setIsSupabaseInfoOpen] = useState(false);
 
-  // Open booking modal with optional initial configuration
   const handleOpenBooking = (initialData = {}) => {
     setBookingInitialData(initialData);
     setIsBookingOpen(true);
   };
 
-  // When guest clicks "Reserve" on a specific room card
   const handleSelectRoom = (room) => {
     setBookingInitialData({ room });
     setIsBookingOpen(true);
   };
 
-  // When guest clicks "Explore Details" / "Quick View"
   const handleQuickView = (room) => {
     setQuickViewRoom(room);
   };
 
   return (
     <div className="amontron-app">
-      {/* Sticky Translucent Glass Navigation */}
+      <ScrollToTop />
       <Navbar 
         onOpenBooking={() => handleOpenBooking()}
         onOpenLookup={() => setIsLookupOpen(true)}
         onOpenSupabaseInfo={() => setIsSupabaseInfoOpen(true)}
       />
 
-      {/* Main Content Sections */}
       <main id="main-content">
-        {/* Hero Slider */}
-        <ErrorBoundary>
-          <HeroSlider 
-            onOpenBooking={handleOpenBooking}
-          />
-        </ErrorBoundary>
-
-        {/* Rooms & Suites */}
-        <ErrorBoundary>
-          <RoomCarousel 
-            onSelectRoom={handleSelectRoom}
-            onQuickView={handleQuickView}
-          />
-        </ErrorBoundary>
-
-        {/* Restaurant & Dining */}
-        <ErrorBoundary>
-          <DiningSection />
-        </ErrorBoundary>
-
-        {/* Hotel Services & Amenities */}
-        <ErrorBoundary>
-          <ExperienceSection />
-        </ErrorBoundary>
-
-        {/* Additional Facilities */}
-        <ErrorBoundary>
-          <WellnessSection 
-            onOpenBooking={() => handleOpenBooking()}
-          />
-        </ErrorBoundary>
-
-        {/* Our Story */}
-        <ErrorBoundary>
-          <HeritageStory />
-        </ErrorBoundary>
-
-        {/* Guest Reviews */}
-        <ErrorBoundary>
-          <ReviewsSection />
-        </ErrorBoundary>
-
-        {/* Contact & FAQs */}
-        <ErrorBoundary>
-          <ContactSection />
-        </ErrorBoundary>
+        <Routes>
+          <Route path="/" element={<HomePage onOpenBooking={handleOpenBooking} onSelectRoom={handleSelectRoom} onQuickView={handleQuickView} />} />
+          <Route path="/rooms" element={<RoomsPage onOpenBooking={handleOpenBooking} onSelectRoom={handleSelectRoom} onQuickView={handleQuickView} />} />
+          <Route path="/room/:id" element={<RoomDetailPage onOpenBooking={handleOpenBooking} />} />
+          <Route path="/restaurant" element={<RestaurantPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/facilities" element={<FacilitiesPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/location" element={<LocationPage />} />
+        </Routes>
       </main>
 
-      {/* Rich Footer with Alpine CET Clock & Newsletter */}
       <Footer 
         onOpenBooking={() => handleOpenBooking()}
         onOpenLookup={() => setIsLookupOpen(true)}
       />
 
-      {/* MODALS */}
-      {/* 1. Multi-Step Luxury Booking Engine */}
       <BookingModal 
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
         initialData={bookingInitialData}
       />
 
-      {/* 2. Room Specifications & Photo Gallery Modal */}
       <RoomModal 
         room={quickViewRoom}
         onClose={() => setQuickViewRoom(null)}
         onSelectRoom={handleSelectRoom}
       />
 
-      {/* 3. Guest Concierge Portal / Find My Reservation */}
       <ManageBookingsModal 
         isOpen={isLookupOpen}
         onClose={() => setIsLookupOpen(false)}
       />
 
-      {/* 4. Supabase Setup & Architecture Modal */}
       <SupabaseInfoModal 
         isOpen={isSupabaseInfoOpen}
         onClose={() => setIsSupabaseInfoOpen(false)}

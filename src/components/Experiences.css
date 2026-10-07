@@ -1,195 +1,151 @@
-/* Experiences Section Styles */
-.experiences-section {
+.bengali-experience-section {
+  background-color: var(--bg-primary); /* warm cream */
+  padding: 100px 0;
   position: relative;
-  background-color: var(--bg-surface);
-  border-bottom: 1px solid var(--border-subtle);
-  overflow: hidden;
+  border-top: 1px solid rgba(203, 163, 88, 0.2);
 }
 
-.exp-filters-wrap {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 48px;
-}
-
-.exp-cat-btn {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
-  padding: 8px 18px;
-  border-radius: 50px;
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  transition: all var(--transition-fast);
-}
-
-.exp-cat-btn:hover {
-  border-color: var(--border-gold);
-  color: #ffffff;
-}
-
-.exp-btn-active {
-  background: var(--gold-gradient-subtle);
-  border-color: var(--gold-primary);
-  color: var(--gold-light);
-  font-weight: 500;
-}
-
-/* Experience Cards Grid */
-.experiences-grid {
+.experience-editorial-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 40px;
+  align-items: stretch;
 }
 
-.experience-card {
+.experience-rooms-text, .experience-restaurant-text {
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  border-radius: 12px;
+  justify-content: center;
 }
 
-.exp-media-wrap {
+.experience-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.experience-rooms-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* Editorial Room Card */
+.editorial-room-card {
+  background: white;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0; /* No rounded corners for editorial look */
+  padding: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.editorial-room-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-terracotta);
+}
+
+.room-image-wrapper {
   position: relative;
-  height: 240px;
+  width: 100%;
+  aspect-ratio: 4/5;
   overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
 }
 
-.exp-img {
+.room-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s ease;
+  transition: transform 0.5s ease;
 }
 
-.experience-card:hover .exp-img {
-  transform: scale(1.08);
+.editorial-room-card:hover .room-image-wrapper img {
+  transform: scale(1.05);
 }
 
-.exp-gradient-overlay {
+.room-price-tag {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(14, 18, 25, 0.1) 0%, rgba(14, 18, 25, 0.9) 100%);
+  top: 10px;
+  right: 10px;
+  background: var(--accent-terracotta);
+  color: white;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
-.exp-badge-top {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background: rgba(10, 13, 18, 0.85);
-  border: 1px solid var(--border-gold);
-  color: var(--gold-light);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 50px;
-}
-
-.exp-cat-chip {
-  position: absolute;
-  bottom: 14px;
-  left: 16px;
-  font-size: 0.72rem;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
-  padding: 3px 10px;
-  border-radius: 4px;
-}
-
-.exp-body {
-  padding: 24px;
+.room-card-info {
+  padding: 20px 10px 10px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.exp-title {
-  font-size: 1.45rem;
+.room-card-info h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--text-primary);
   margin-bottom: 12px;
-  line-height: 1.25;
 }
 
-.exp-meta-row {
+.room-specs {
   display: flex;
-  gap: 14px;
-  padding: 10px 0;
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 14px;
-  font-size: 0.78rem;
-  color: var(--text-muted);
+  gap: 16px;
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
 }
 
-.exp-meta-item {
+.room-specs span {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 
-.exp-desc {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 22px;
-  flex: 1;
-}
-
-.exp-card-footer {
+.btn-full {
+  width: 100%;
+  justify-content: center;
   margin-top: auto;
 }
 
-.exp-cta-btn {
-  width: 100%;
-}
-
-/* Modal */
-.exp-modal-content {
-  max-width: 620px;
-  padding: 38px 42px;
-  background: #0f131a;
-}
-
-.exp-modal-title {
-  font-size: 1.85rem;
-  margin-top: 6px;
-}
-
-.exp-modal-sub {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin: 6px 0 20px;
-}
-
-.exp-summary-box {
+/* Restaurant Side */
+.restaurant-art-frame {
+  margin: 30px 0;
+  position: relative;
+  height: 250px;
   display: flex;
-  justify-content: space-between;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  padding: 12px 18px;
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  margin-bottom: 22px;
+  align-items: center;
+  justify-content: center;
 }
 
-.exp-summary-box strong {
-  color: var(--gold-light);
+.restaurant-mask-art {
+  max-height: 100%;
+  max-width: 100%;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
+  opacity: 0.9;
 }
 
-@media (max-width: 1024px) {
-  .experiences-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 680px) {
-  .experiences-grid {
+@media (max-width: 1200px) {
+  .experience-editorial-grid {
     grid-template-columns: 1fr;
+    gap: 60px;
   }
-  .exp-modal-content {
-    padding: 24px 18px;
+  .experience-rooms-text, .experience-restaurant-text {
+    text-align: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-rooms-display {
+    grid-template-columns: 1fr;
   }
 }

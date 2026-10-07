@@ -1,64 +1,54 @@
 import React from 'react';
-import { 
-  Wind, 
-  Wifi, 
-  UtensilsCrossed, 
-  Clock, 
-  Sparkles, 
-  Car, 
-  Zap, 
-  Users, 
-  ShieldCheck, 
-  Droplets,
-  ArrowRight
-} from 'lucide-react';
+import { Wind, Wifi, UtensilsCrossed, Clock, Sparkles, Car, Zap, Users, ShieldCheck, Droplets, ArrowRight } from 'lucide-react';
 import { FACILITIES } from '../data/hotelData';
-import './Pages.css';
+import './FacilitiesPage.css';
 
 export default function FacilitiesPage({ onOpenBooking }) {
   const getIcon = (iconName) => {
     switch (iconName) {
-      case 'Wind': return <Wind size={28} className="text-gold" />;
-      case 'Wifi': return <Wifi size={28} className="text-gold" />;
-      case 'UtensilsCrossed': return <UtensilsCrossed size={28} className="text-gold" />;
-      case 'Clock': return <Clock size={28} className="text-gold" />;
-      case 'Sparkles': return <Sparkles size={28} className="text-gold" />;
-      case 'Car': return <Car size={28} className="text-gold" />;
-      case 'Zap': return <Zap size={28} className="text-gold" />;
-      case 'Users': return <Users size={28} className="text-gold" />;
-      case 'ShieldCheck': return <ShieldCheck size={28} className="text-gold" />;
-      case 'Droplets': return <Droplets size={28} className="text-gold" />;
-      default: return <Sparkles size={28} className="text-gold" />;
+      case 'Wind': return <Wind size={28} className="text-terracotta" />;
+      case 'Wifi': return <Wifi size={28} className="text-terracotta" />;
+      case 'UtensilsCrossed': return <UtensilsCrossed size={28} className="text-terracotta" />;
+      case 'Clock': return <Clock size={28} className="text-terracotta" />;
+      case 'Car': return <Car size={28} className="text-terracotta" />;
+      case 'Zap': return <Zap size={28} className="text-terracotta" />;
+      case 'Users': return <Users size={28} className="text-terracotta" />;
+      case 'ShieldCheck': return <ShieldCheck size={28} className="text-terracotta" />;
+      case 'Droplets': return <Droplets size={28} className="text-terracotta" />;
+      default: return <Sparkles size={28} className="text-terracotta" />;
     }
   };
 
   return (
-    <div className="inner-page facilities-page">
-      {/* Page Hero */}
-      <section className="page-hero-banner">
-        <div className="section-wrapper text-center">
-          <span className="page-eyebrow">HOSPITALITY &amp; CONVENIENCE</span>
-          <h1 className="page-main-title">Facilities &amp; Amenities</h1>
-          <div className="gold-divider center-divider" />
-          <p className="page-hero-desc">
+    <div className="bengali-page">
+      {/* Editorial Page Hero */}
+      <section className="bengali-page-hero editorial-hero">
+        <div className="hero-texture-overlay"></div>
+        <img src="/images/art7.jpg" className="editorial-hero-bg" alt="Alpana Motif" />
+        
+        <div className="section-wrapper text-center relative z-2">
+          <span className="page-eyebrow">HOSPITALITY & CONVENIENCE</span>
+          <h1 className="page-title">Facilities & Amenities</h1>
+          <p className="page-description">
             Thoughtfully planned amenities and seamless services ensuring every comfort and convenience throughout your stay.
           </p>
         </div>
       </section>
 
       {/* Facilities Grid */}
-      <section className="facilities-content-section">
+      <section className="editorial-facilities-section">
         <div className="section-wrapper">
-          <div className="facilities-extended-grid">
-            {FACILITIES.map((fac) => (
-              <div key={fac.id} className="facility-extended-card glass-card">
+          <div className="editorial-facilities-grid">
+            {FACILITIES.map((fac, idx) => (
+              <div key={fac.id} className="editorial-facility-card">
                 <div className="facility-icon-wrap">
                   {getIcon(fac.icon)}
+                  {/* Small decorative motif overlay */}
+                  <img src="/images/art3.jpg" className="facility-decor" alt=""/>
                 </div>
-                <div className="facility-card-info">
-                  <h3 className="facility-title">{fac.name}</h3>
-                  <p className="facility-detail">{fac.description}</p>
-                </div>
+                <h3 className="facility-title">{fac.name}</h3>
+                <p className="facility-detail">{fac.description}</p>
+                <div className="facility-number">{(idx + 1).toString().padStart(2, '0')}</div>
               </div>
             ))}
           </div>
@@ -66,19 +56,17 @@ export default function FacilitiesPage({ onOpenBooking }) {
       </section>
 
       {/* Highlights Strip */}
-      <section className="facilities-highlights-strip">
-        <div className="section-wrapper">
-          <div className="highlight-banner glass-card">
-            <div className="highlight-text">
-              <h2>Need a Custom Setup for Your Group or Family?</h2>
-              <p>Contact our front desk team for conference arrangements, group bookings, or special dining requests.</p>
-            </div>
-            <div className="highlight-action">
-              <button className="btn-primary" onClick={() => onOpenBooking({})}>
-                <span>Make a Reservation</span>
-                <ArrowRight size={15} />
-              </button>
-            </div>
+      <section className="editorial-cta-banner">
+        <img src="/images/art1.jpg" className="cta-bg-art" alt=""/>
+        <div className="cta-overlay"></div>
+        
+        <div className="section-wrapper text-center relative z-2">
+          <h2 className="cta-heading">Need a Custom Setup for Your Group?</h2>
+          <p className="cta-desc">Contact our front desk team for conference arrangements, group bookings, or special dining requests.</p>
+          <div className="cta-actions">
+            <button className="btn-terracotta" onClick={() => onOpenBooking({})}>
+              MAKE A RESERVATION <ArrowRight size={16} className="ml-2" />
+            </button>
           </div>
         </div>
       </section>
