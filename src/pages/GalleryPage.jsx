@@ -3,15 +3,28 @@ import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GALLERY_ITEMS } from '../data/hotelData';
 import './GalleryPage.css';
 
+const BENGALI_GALLERY_ITEMS = [
+  { id: 'gal-1', title: 'Traditional Bengali Welcome Artwork', category: 'Culture', image: '/images/art1.jpg' },
+  { id: 'gal-2', title: 'Deluxe King Bedroom Interior', category: 'Rooms', image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'gal-3', title: 'Authentic Bengali Special Breakfast Thali', category: 'Food', image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'gal-4', title: 'Bengali Folk Instruments & Baul Music', category: 'Culture', image: '/images/art2.jpg' },
+  { id: 'gal-5', title: 'Family Suite Accommodation', category: 'Rooms', image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'gal-6', title: 'Fine Dining Restaurant Ambiance', category: 'Food', image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'gal-7', title: 'Traditional Bengali Classical Folk Dance', category: 'Culture', image: '/images/art5.jpg' },
+  { id: 'gal-8', title: 'Hotel Reception & Welcoming Lobby', category: 'Hotel', image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'gal-9', title: 'Grand Festive Folk Art Illustration', category: 'Culture', image: '/images/art7.jpg' },
+  { id: 'gal-10', title: 'Intricate Bengali Alpana & Border Motifs', category: 'Culture', image: '/images/art6.jpg' }
+];
+
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  const categories = ['All', 'Hotel', 'Rooms', 'Restaurant', 'Facilities'];
+  const categories = ['All', 'Rooms', 'Food', 'Culture', 'Hotel'];
 
   const filtered = activeCategory === 'All'
-    ? GALLERY_ITEMS
-    : GALLERY_ITEMS.filter(img => img.category.toLowerCase() === activeCategory.toLowerCase());
+    ? BENGALI_GALLERY_ITEMS
+    : BENGALI_GALLERY_ITEMS.filter(img => img.category.toLowerCase() === activeCategory.toLowerCase());
 
   // Determine span class based on index to create an asymmetric layout
   const getSpanClass = (index) => {

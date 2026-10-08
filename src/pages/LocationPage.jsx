@@ -43,6 +43,31 @@ export default function LocationPage() {
                     <span>{HOTEL_INFO.email}</span>
                   </div>
                 </div>
+
+                <div className="location-action-buttons mt-4 flex flex-wrap gap-3">
+                  <a 
+                    href="https://maps.google.com/?q=Midnapore+West+Bengal" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="btn-terracotta inline-flex items-center gap-2"
+                  >
+                    <Navigation size={16} /> Get Directions
+                  </a>
+                  <a 
+                    href={`tel:${HOTEL_INFO.phone}`} 
+                    className="btn-outline-gold inline-flex items-center gap-2"
+                  >
+                    <Phone size={16} /> Call Now
+                  </a>
+                  <a 
+                    href={`https://wa.me/${(HOTEL_INFO.phone || '').replace(/[^0-9]/g, '')}`} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="btn-outline-gold inline-flex items-center gap-2"
+                  >
+                    WhatsApp Us
+                  </a>
+                </div>
               </div>
 
               <div className="editorial-info-box">

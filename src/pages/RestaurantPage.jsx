@@ -5,10 +5,20 @@ import { MENU_ITEMS, MENU_CATEGORIES } from '../data/hotelData'; // Fallbacks
 import { HOTEL_INFO } from '../config/hotelInfo';
 import './RestaurantPage.css';
 
+const DEFAULT_RESTAURANT_CATEGORIES = [
+  'All',
+  'Breakfast',
+  'Bengali Cuisine',
+  'Indian Cuisine',
+  'Rice & Biryani',
+  'Snacks',
+  'Drinks'
+];
+
 export default function RestaurantPage({ onOpenBooking }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [menuItems, setMenuItems] = useState([]);
-  const [categories, setCategories] = useState(MENU_CATEGORIES);
+  const [categories, setCategories] = useState(DEFAULT_RESTAURANT_CATEGORIES);
   const [loading, setLoading] = useState(true);
   
   const [reserved, setReserved] = useState(false);
@@ -19,18 +29,17 @@ export default function RestaurantPage({ onOpenBooking }) {
   useEffect(() => {
     async function fetchMenu() {
       try {
-        const { data, error } = await supabase.from('menu_items').select('*').eq('available', true);
+        const { data, error } = await supabase.from('menu_items').select('*');
         if (error) throw error;
         
         if (data && data.length > 0) {
           setMenuItems(data);
-          const uniqueCats = ['All', ...new Set(data.map(item => item.category))];
-          setCategories(uniqueCats);
+          const uniqueCats = ['All', ...new Set(data.map(item => item.category).filter(Boolean))];
+          setCategories(uniqueCats.length > 1 ? uniqueCats : DEFAULT_RESTAURANT_CATEGORIES);
         } else {
           setMenuItems(MENU_ITEMS);
         }
       } catch (err) {
-        console.error('Error fetching menu, using fallback:', err);
         setMenuItems(MENU_ITEMS);
       } finally {
         setLoading(false);
@@ -39,9 +48,10 @@ export default function RestaurantPage({ onOpenBooking }) {
     fetchMenu();
   }, []);
 
-  const filteredItems = selectedCategory === 'All'
-    ? menuItems
-    : menuItems.filter(item => item.category === selectedCategory);
+  const filteredItems = (Array.isArray(menuItems) ? menuItems : []).filter(item => {
+    if (selectedCategory === 'All') return true;
+    return item.category?.toLowerCase() === selectedCategory.toLowerCase();
+  });
 
   const handleTableReserve = (e) => {
     e.preventDefault();
@@ -130,7 +140,11 @@ export default function RestaurantPage({ onOpenBooking }) {
                         )}
                       </h3>
                       <div className="menu-item-dots"></div>
-                      <span className="item-price">₹{item.price}</span>
+                      {item.available === false ? (
+                        <span className="item-unavailable-badge">Currently Unavailable</span>
+                      ) : (
+                        <span className="item-price">₹{item.price}</span>
+                      )}
                     </div>
                     <p className="item-desc">{item.description}</p>
                   </div>
@@ -159,7 +173,7 @@ export default function RestaurantPage({ onOpenBooking }) {
               </p>
               <div className="res-phone mt-6">
                 <Phone size={20} className="text-terracotta mr-2" />
-                <span>Call us: <strong className="ml-2">+91 00000 00000</strong></span>
+                <span>Call us: <strong className="ml-2">{HOTEL_INFO.phoneDisplay || HOTEL_INFO.phone}</strong></span>
               </div>
             </div>
 

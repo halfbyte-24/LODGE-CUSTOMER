@@ -123,62 +123,89 @@
   transform: translateX(4px);
 }
 
-/* Right Editorial Collage */
-.about-right-collage {
+/* Right Composition: Room Image + Red Info Panel */
+.about-right-composition {
   position: relative;
-  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.editorial-frame {
-  position: absolute;
+.about-hotel-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
   background: white;
-  padding: 10px;
-  box-shadow: var(--shadow-md);
+  padding: 8px;
   border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+  border-radius: 4px;
+  overflow: hidden;
 }
 
-.editorial-frame img {
+.about-hotel-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  border-radius: 2px;
 }
 
-.main-frame {
-  top: 10%;
-  right: 0;
-  width: 80%;
-  height: 60%;
-  z-index: 2;
-}
-
-.accent-frame {
-  bottom: 10%;
-  left: 0;
-  width: 60%;
-  height: 50%;
-  z-index: 3;
-}
-
-.collage-decor-motif {
+.about-red-info-panel {
   position: absolute;
-  top: -10%;
-  left: -20%;
-  width: 50%;
-  mix-blend-mode: multiply;
-  opacity: 0.8;
-  z-index: 1;
+  bottom: -20px;
+  right: -20px;
+  background: linear-gradient(135deg, #B52222 0%, #8F1717 100%);
+  color: white;
+  padding: 24px 28px;
+  border-radius: 8px 14px 10px 18px; /* Organic handcrafted brush edge */
+  box-shadow: 0 12px 32px rgba(143, 23, 23, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 5;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.info-feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  flex-shrink: 0;
 }
 
 @media (max-width: 1024px) {
   .about-editorial-layout {
     grid-template-columns: 1fr;
-    gap: 80px;
+    gap: 60px;
   }
-  .about-left-art, .about-right-collage {
-    height: 400px;
-    max-width: 500px;
+  .about-left-art {
+    height: 350px;
+    max-width: 450px;
     margin: 0 auto;
     width: 100%;
+  }
+  .about-right-composition {
+    max-width: 450px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .about-red-info-panel {
+    position: static;
+    margin-top: 20px;
   }
 }

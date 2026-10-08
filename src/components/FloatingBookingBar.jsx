@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Users, BedDouble, ArrowRight } from 'lucide-react';
-import { ROOMS } from '../data/hotelData';
+import { ROOM_TYPES } from '../data/hotelData';
 import './FloatingBookingBar.css';
 
 export default function FloatingBookingBar({ onCheckAvailability, defaultRoomId }) {
-  const [selectedRoomId, setSelectedRoomId] = useState(defaultRoomId || ROOMS[0].id);
+  const [selectedRoomId, setSelectedRoomId] = useState(defaultRoomId || ROOM_TYPES[0].id);
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState('2');
@@ -23,7 +23,7 @@ export default function FloatingBookingBar({ onCheckAvailability, defaultRoomId 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const selectedRoom = ROOMS.find(r => r.id === selectedRoomId) || ROOMS[0];
+    const selectedRoom = ROOM_TYPES.find(r => r.id === selectedRoomId) || ROOM_TYPES[0];
     onCheckAvailability({
       room_id: selectedRoom.id,
       room_name: selectedRoom.name,
@@ -43,14 +43,14 @@ export default function FloatingBookingBar({ onCheckAvailability, defaultRoomId 
           <div className="res-field-col">
             <label className="res-label">
               <BedDouble size={14} className="res-icon" />
-              <span>ROOM / ACCOMMODATION</span>
+              <span>ROOM / ROOM TYPE</span>
             </label>
             <select
               className="res-select"
               value={selectedRoomId}
               onChange={(e) => setSelectedRoomId(e.target.value)}
             >
-              {ROOMS.map((r) => (
+              {ROOM_TYPES.map((r) => (
                 <option key={r.id} value={r.id}>
                   {r.name} (₹{r.price.toLocaleString()}/night)
                 </option>

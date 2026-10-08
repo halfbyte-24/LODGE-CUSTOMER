@@ -22,12 +22,9 @@ export default function Navbar({ onOpenBookingModal, onOpenBooking }) {
 
   const navLinks = [
     { label: 'HOME', path: '/' },
-    { label: 'ROOMS & SUITES', path: '/rooms' },
-    { label: 'FACILITIES', path: '/facilities' },
+    { label: 'ROOMS', path: '/rooms' },
     { label: 'RESTAURANT', path: '/restaurant' },
-    { label: 'GALLERY', path: '/gallery' },
     { label: 'ABOUT', path: '/about' },
-    { label: 'LOCATION', path: '/location' },
     { label: 'CONTACT', path: '/contact' }
   ];
 
@@ -64,7 +61,7 @@ export default function Navbar({ onOpenBookingModal, onOpenBooking }) {
               className="btn-terracotta nav-book-btn"
               onClick={handleBooking}
             >
-              BOOK NOW
+              Book a Room &rarr;
             </button>
 
             <button 

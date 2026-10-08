@@ -1,59 +1,47 @@
-.bengali-experience-section {
-  background-color: var(--bg-primary); /* warm cream */
-  padding: 100px 0;
+.bengali-experience-wrapper {
+  background-color: var(--bg-primary);
   position: relative;
-  border-top: 1px solid rgba(203, 163, 88, 0.2);
 }
 
-.experience-editorial-grid {
+.bengali-rooms-section {
+  padding: 100px 0 80px;
+}
+
+.section-header-compact {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 50px;
+}
+
+.experience-rooms-3col {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  gap: 40px;
-  align-items: stretch;
-}
-
-.experience-rooms-text, .experience-restaurant-text {
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.experience-desc {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-bottom: 24px;
-}
-
-.experience-rooms-display {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
-/* Editorial Room Card */
 .editorial-room-card {
   background: white;
   border: 1px solid var(--border-subtle);
-  border-radius: 0; /* No rounded corners for editorial look */
-  padding: 12px;
+  border-radius: 6px;
+  padding: 14px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.03);
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .editorial-room-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   border-color: var(--accent-terracotta);
+  box-shadow: 0 12px 30px rgba(192, 57, 43, 0.08);
 }
 
 .room-image-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/5;
+  aspect-ratio: 4/3;
   overflow: hidden;
+  border-radius: 4px;
   border: 1px solid rgba(0,0,0,0.05);
 }
 
@@ -61,7 +49,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .editorial-room-card:hover .room-image-wrapper img {
@@ -74,10 +62,11 @@
   right: 10px;
   background: var(--accent-terracotta);
   color: white;
-  padding: 6px 12px;
+  padding: 6px 14px;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.05em;
+  border-radius: 2px;
 }
 
 .room-card-info {
@@ -114,38 +103,107 @@
   margin-top: auto;
 }
 
-/* Restaurant Side */
-.restaurant-art-frame {
-  margin: 30px 0;
-  position: relative;
-  height: 250px;
+/* Decorative folk art divider */
+.bengali-folk-divider {
+  width: 100%;
+  height: 28px;
+  background-color: var(--accent-terracotta);
+  overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-.restaurant-mask-art {
-  max-height: 100%;
-  max-width: 100%;
-  mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
-  mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
+.bengali-folk-divider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
+/* Restaurant Showcase */
+.bengali-restaurant-section {
+  padding: 100px 0;
+  background-color: var(--bg-surface);
+}
+
+.restaurant-showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.restaurant-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.restaurant-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  margin-left: auto;
+}
+
+.restaurant-food-art {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.restaurant-accent-badge {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  background: var(--accent-terracotta);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(192, 57, 43, 0.25);
+}
+
+.restaurant-accent-badge span {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   opacity: 0.9;
 }
 
-@media (max-width: 1200px) {
-  .experience-editorial-grid {
-    grid-template-columns: 1fr;
-    gap: 60px;
+.restaurant-accent-badge strong {
+  font-size: 1.1rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+@media (max-width: 1024px) {
+  .experience-rooms-3col {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .experience-rooms-text, .experience-restaurant-text {
-    text-align: center;
+  .restaurant-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .restaurant-text-col {
     align-items: center;
+    text-align: center;
+  }
+  .restaurant-image-container {
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 768px) {
-  .experience-rooms-display {
+  .experience-rooms-3col {
     grid-template-columns: 1fr;
+  }
+  .restaurant-accent-badge {
+    position: static;
+    margin-top: 16px;
   }
 }

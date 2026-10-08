@@ -136,9 +136,27 @@ export default function ContactSection() {
                   <textarea rows={4} required placeholder="Tell us your preferred dates, number of guests, or special requirements..." value={message} onChange={(e) => setMessage(e.target.value)} />
                 </div>
 
-                <button type="submit" className="btn-terracotta w-100" disabled={isSubmitting}>
-                  {isSubmitting ? <span>Sending...</span> : <><Send size={16} style={{marginRight: '8px'}} /> Send Message</>}
-                </button>
+                <div className="contact-form-actions flex flex-col gap-3">
+                  <button type="submit" className="btn-terracotta w-100" disabled={isSubmitting}>
+                    {isSubmitting ? <span>Sending...</span> : <><Send size={16} style={{marginRight: '8px'}} /> Send Enquiry</>}
+                  </button>
+                  <div className="flex gap-3">
+                    <a 
+                      href={`https://wa.me/${(RESORT_INFO.phone || '').replace(/[^0-9]/g, '')}`} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="btn-outline-gold flex-1 text-center py-2"
+                    >
+                      WhatsApp Us
+                    </a>
+                    <a 
+                      href={`tel:${RESORT_INFO.phone}`} 
+                      className="btn-outline-gold flex-1 text-center py-2"
+                    >
+                      Call Now
+                    </a>
+                  </div>
+                </div>
               </form>
             ) : (
               <div className="sent-success-box">

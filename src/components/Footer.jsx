@@ -29,14 +29,16 @@ export default function Footer({ onOpenBooking }) {
 
           {/* Quick Links */}
           <div className="footer-links-section">
-            <h3 className="footer-heading">Explore</h3>
+            <h3 className="footer-heading">Quick Links</h3>
             <ul className="footer-links-list">
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/rooms">Rooms & Suites</Link></li>
+              <li><Link to="/rooms">Rooms</Link></li>
               <li><Link to="/restaurant">Restaurant</Link></li>
               <li><Link to="/facilities">Facilities</Link></li>
+              <li><Link to="/about">About</Link></li>
               <li><Link to="/gallery">Gallery</Link></li>
-              <li><Link to="/about">Our Story</Link></li>
+              <li><Link to="/location">Location</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 
@@ -50,15 +52,15 @@ export default function Footer({ onOpenBooking }) {
               </li>
               <li>
                 <Phone size={18} className="contact-icon" />
-                <span><a href={`tel:${HOTEL_INFO.phone}`}>{HOTEL_INFO.phoneDisplay}</a></span>
+                <span><a href={`tel:${HOTEL_INFO.phone}`}>{HOTEL_INFO.phoneDisplay || HOTEL_INFO.phone}</a></span>
               </li>
               <li>
                 <Mail size={18} className="contact-icon" />
                 <span><a href={`mailto:${HOTEL_INFO.email}`}>{HOTEL_INFO.email}</a></span>
               </li>
             </ul>
-            <button className="btn-outline-gold mt-4" onClick={() => onOpenBooking()}>
-              BOOK YOUR STAY
+            <button className="btn-terracotta mt-4" onClick={() => onOpenBooking()}>
+              Book a Room &rarr;
             </button>
           </div>
 
