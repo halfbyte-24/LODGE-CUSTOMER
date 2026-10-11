@@ -11,6 +11,7 @@ import FacilitiesPage from './pages/FacilitiesPage';
 import GalleryPage from './pages/GalleryPage';
 import LocationPage from './pages/LocationPage';
 import RoomDetailPage from './pages/RoomDetailPage';
+import BookingPage from './pages/BookingPage';
 import BookingModal from './components/BookingModal';
 import ManageBookingsModal from './components/ManageBookingsModal';
 import RoomModal from './components/RoomModal';
@@ -66,6 +67,7 @@ export default function App() {
           <Route path="/facilities" element={<FacilitiesPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/location" element={<LocationPage />} />
+          <Route path="/booking" element={<BookingPage />} />
         </Routes>
       </main>
 

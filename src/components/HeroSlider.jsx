@@ -1,132 +1,178 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './HeroSlider.css';
 
-const HERO_ART_SETS = [
+const HEADLINES = [
   {
-    main: '/images/art1.jpg',
-    secondary: '/images/art2.jpg',
-    motif: '/images/art4.jpg',
-    decor: '/images/art3.jpg',
-    title: 'Bengali Folk Heritage'
+    lang: 'en',
+    fullText: 'Experience Comfort & Taste in the Heart of Bengal',
+    render: (typedText) => {
+      // "Experience Comfort & Taste in the Heart of Bengal"
+      // Part 1: "Experience " (dark text #252019)
+      // Part 2: "Comfort & Taste" (maroon accent #9B1C1C)
+      // Part 3: " in the Heart of Bengal" (forest green #1F4D2E)
+      const part1Target = 'Experience ';
+      const part2Target = 'Comfort & Taste';
+
+      let p1 = '';
+      let p2 = '';
+      let p3 = '';
+
+      if (typedText.length <= part1Target.length) {
+        p1 = typedText;
+      } else if (typedText.length <= part1Target.length + part2Target.length) {
+        p1 = part1Target;
+        p2 = typedText.slice(part1Target.length);
+      } else {
+        p1 = part1Target;
+        p2 = part2Target;
+        p3 = typedText.slice(part1Target.length + part2Target.length);
+      }
+
+      return (
+        <span className="typed-headline-text en-font">
+          {p1 && <span>{p1}</span>}
+          {p2 && <span className="hero-headline-accent">{p2}</span>}
+          {p3 && <span className="hero-headline-dark">{p3}</span>}
+        </span>
+      );
+    }
   },
   {
-    main: '/images/art7.jpg',
-    secondary: '/images/art5.jpg',
-    motif: '/images/art2.jpg',
-    decor: '/images/art1.jpg',
-    title: 'Traditional Bengali Festivities'
-  },
-  {
-    main: '/images/art5.jpg',
-    secondary: '/images/art1.jpg',
-    motif: '/images/art3.jpg',
-    decor: '/images/art4.jpg',
-    title: 'Cultural Rhythm of Bengal'
+    lang: 'bn',
+    fullText: 'বাংলার ঐতিহ্য ও আধুনিক স্বাচ্ছন্দ্যের আতিথেয়তা',
+    render: (typedText) => {
+      // Bengali headline: "বাংলার ঐতিহ্য ও আধুনিক স্বাচ্ছন্দ্যের আতিথেয়তা"
+      // Highlight "বাংলার ঐতিহ্য" in maroon and the rest in deep green
+      const splitPoint = 13; // "বাংলার ঐতিহ্য" is 13 graphemes
+      const graphemes = Array.from(typedText);
+      const part1 = graphemes.slice(0, splitPoint).join('');
+      const part2 = graphemes.slice(splitPoint).join('');
+
+      return (
+        <span className="typed-headline-text bn-font">
+          {part1 && <span className="hero-headline-accent">{part1}</span>}
+          {part2 && <span className="hero-headline-dark">{part2}</span>}
+        </span>
+      );
+    }
   }
 ];
 
 export default function HeroSlider({ onOpenBooking }) {
-  const [activeSetIndex, setActiveSetIndex] = useState(0);
+  const [headlineIndex, setHeadlineIndex] = useState(0);
+  const [displayedCount, setDisplayedCount] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const currentHeadline = HEADLINES[headlineIndex];
+  // Break into graphemes to safely support Bengali Unicode combinations
+  const graphemes = Array.from(currentHeadline.fullText);
 
   useEffect(() => {
-    document.body.classList.add('hero-loaded');
-    const interval = setInterval(() => {
-      setActiveSetIndex((prev) => (prev + 1) % HERO_ART_SETS.length);
-    }, 5500);
+    let timer;
 
-    return () => {
-      document.body.classList.remove('hero-loaded');
-      clearInterval(interval);
-    };
-  }, []);
+    if (!isDeleting) {
+      if (displayedCount < graphemes.length) {
+        // Typing: 90ms per character
+        timer = setTimeout(() => {
+          setDisplayedCount((prev) => prev + 1);
+        }, 90);
+      } else {
+        // Full headline typed: Pause for 3000ms (3 seconds)
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, 3000);
+      }
+    } else {
+      if (displayedCount > 0) {
+        // Deleting: 40ms per character
+        timer = setTimeout(() => {
+          setDisplayedCount((prev) => prev - 1);
+        }, 40);
+      } else {
+        // Completely deleted: switch to next headline
+        setIsDeleting(false);
+        setHeadlineIndex((prev) => (prev + 1) % HEADLINES.length);
+      }
+    }
 
-  const currentSet = HERO_ART_SETS[activeSetIndex] || HERO_ART_SETS[0];
+    return () => clearTimeout(timer);
+  }, [displayedCount, isDeleting, headlineIndex, graphemes.length]);
+
+  const currentTypedText = graphemes.slice(0, displayedCount).join('');
+
+  const handleBookingClick = () => {
+    if (onOpenBooking) {
+      onOpenBooking();
+    }
+  };
 
   return (
-    <section className="bengali-hero">
-      {/* Background Texture Overlay */}
-      <div className="hero-texture-overlay"></div>
-      
-      {/* Huge subtle background motif */}
-      <img 
-        src="/images/art7.jpg" 
-        className="hero-bg-motif" 
-        alt="" 
-        onError={(e) => { e.currentTarget.style.display = 'none'; }}
-      />
-      
-      <div className="hero-container section-wrapper">
-        <div className="hero-grid">
-          
-          {/* Left Side: Content */}
-          <div className="hero-content">
-            <span className="hero-eyebrow">YOUR HOME AWAY FROM HOME</span>
-            <h1 className="hero-headline">
-              <span className="hero-lead-text">Experience</span> <br />
-              <span className="text-red-accent">Comfort &amp; Taste</span> <br />
-              <span className="hero-green-text">in the Heart of Bengal</span>
+    <section className="bengali-hero full-width-hero" aria-label="Hero Section">
+      {/* FULL-WIDTH YELLOW BENGALI FOLK-ART BACKGROUND */}
+      <div className="hero-full-bg" aria-hidden="true">
+        <img
+          src="/images/art6.jpg"
+          alt=""
+          className="hero-bg-image"
+          onError={(e) => { e.currentTarget.style.display = 'none'; }}
+        />
+      </div>
+
+      {/* Subtle cream translucent gradient overlay over left text area only */}
+      <div className="hero-overlay-scrim" aria-hidden="true"></div>
+
+      {/* Subtle alpona decorative watermark */}
+      <div className="hero-alpona-watermark" aria-hidden="true"></div>
+
+      <div className="hero-container">
+        {/* ====== LEFT SIDE: Hero Content Overlay ====== */}
+        <div className="hero-content">
+          <span className="hero-eyebrow">YOUR HOME AWAY FROM HOME</span>
+
+          {/* Reserved height container to prevent layout jumping */}
+          <div className="hero-headline-container">
+            <h1 className="hero-headline-animated">
+              {currentHeadline.render(currentTypedText)}
+              <span className="hero-cursor" aria-hidden="true">|</span>
             </h1>
-            <p className="hero-description">
-              Comfortable rooms, delicious traditional food, and a warm Bengali hospitality — all at one place.
-            </p>
-            
-            <div className="hero-actions">
-              <button 
-                className="btn-terracotta"
-                onClick={() => onOpenBooking ? onOpenBooking() : null}
-              >
-                BOOK A ROOM <span>&rarr;</span>
-              </button>
-              <a href="/restaurant" className="btn-outline-gold">
-                VIEW MENU <span>&rarr;</span>
-              </a>
-            </div>
           </div>
 
-          {/* Right Side: Artistic Composition with smooth transition */}
-          <div className="hero-artwork-composition">
-            {/* Base brush/color splash behind artwork */}
-            <div className="artwork-backdrop"></div>
-            
-            <div key={activeSetIndex} className="hero-artwork-layer crossfade-layer">
-              <img 
-                src={currentSet.main} 
-                className="artwork-element couple-art" 
-                alt="Bengali Cultural Art" 
-                onError={(e) => { e.currentTarget.src = '/images/art1.jpg'; }}
-              />
-              
-              <img 
-                src={currentSet.secondary} 
-                className="artwork-element instrument-art" 
-                alt="Musical Instrument" 
-                onError={(e) => { e.currentTarget.src = '/images/art2.jpg'; }}
-              />
-              
-              <img 
-                src={currentSet.motif} 
-                className="artwork-element festival-art" 
-                alt="Festival Motif" 
-                onError={(e) => { e.currentTarget.src = '/images/art4.jpg'; }}
-              />
-              
-              <img 
-                src={currentSet.decor} 
-                className="artwork-element folk-decor" 
-                alt="Folk Decoration" 
-                onError={(e) => { e.currentTarget.src = '/images/art3.jpg'; }}
-              />
-            </div>
+          <p className="hero-description">
+            Comfortable rooms, delicious traditional food, and warm Bengali hospitality—all in one place.
+          </p>
+
+          <div className="hero-actions">
+            <Link
+              to="/booking"
+              id="hero-book-room-btn"
+              className="btn-hero-primary"
+              onClick={handleBookingClick}
+            >
+              BOOK A ROOM &rarr;
+            </Link>
+            <Link
+              to="/restaurant"
+              id="hero-view-menu-btn"
+              className="btn-hero-outline"
+            >
+              VIEW MENU &rarr;
+            </Link>
           </div>
 
+          <div className="hero-trust-strip">
+            <span>✦ 9 Rooms</span>
+            <span>✦ Multi-Cuisine Restaurant</span>
+            <span>✦ 24/7 Service</span>
+          </div>
         </div>
       </div>
-      
-      {/* Decorative Bottom Strip spanning full width */}
-      <div className="hero-bottom-strip">
-        <img 
-          src="/images/art6.jpg" 
-          alt="Decorative Bengali Border" 
+
+      {/* ====== BOTTOM DECORATIVE STRIP — Warli folk art border ====== */}
+      <div className="hero-bottom-art-strip" aria-hidden="true">
+        <img
+          src="/images/art3.jpg"
+          alt="Bengali Folk Art Border"
           onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
       </div>

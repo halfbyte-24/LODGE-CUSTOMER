@@ -12,39 +12,42 @@ export default function AboutPage({ onOpenBooking }) {
         <img src="/images/art7.jpg" className="editorial-hero-bg" alt="Alpana Motif" />
         
         <div className="section-wrapper text-center relative z-2">
-          <span className="page-eyebrow">ROOTED IN BENGAL</span>
-          <h1 className="page-title">A Place of Warmth, Tradition & Hospitality</h1>
+          <span className="page-eyebrow">OUR HERITAGE &amp; STORY</span>
+          <h1 className="page-title">
+            Our Story
+          </h1>
           <p className="page-description">
-            A sanctuary of thoughtful hospitality, modern accommodations, and culinary brilliance in the heart of Midnapore.
+            A harmonious blend of warm Bengali hospitality, rich cultural roots, and modern comfort in the heart of Midnapore.
           </p>
         </div>
       </section>
 
       {/* Main Story & Values - Editorial Layout */}
       <section className="editorial-about-story">
-        <img src="/images/art4.jpg" className="about-decor-dancer left-dancer" alt="Folk Dancer" />
-        <img src="/images/art4.jpg" className="about-decor-dancer right-dancer" alt="Folk Dancer" />
+        <img src="/images/art4.jpg" className="about-decor-dancer left-dancer" alt="" />
+        <img src="/images/art4.jpg" className="about-decor-dancer right-dancer" alt="" />
         
         <div className="section-wrapper">
           <div className="editorial-about-grid">
             <div className="about-editorial-text">
               <span className="section-eyebrow">WELCOME TO AMONTRON</span>
-              <h2 className="about-heading">Delivering Memorable Experiences & Uncompromised Comfort</h2>
+              <h2 className="about-heading">
+                Tradition Meets Modern Hospitality
+              </h2>
               
               <p className="about-paragraph lead">
-                AMONTRON HOTEL & RESTAURANT was established with a singular vision: to deliver premier hospitality, 
-                sparkling clean and comfortable guest rooms, and wholesome multi-cuisine dining to leisure travelers, families, 
-                and corporate delegates.
+                AMONTRON HOTEL &amp; RESTAURANT was founded with a singular purpose: to bring the authentic warmth of Bengali 
+                hospitality to travellers seeking pristine comfort, gracious care, and memorable cuisine.
               </p>
               <p className="about-paragraph">
-                Our property spans three thoughtfully structured floors featuring 9 well-appointed rooms in Standard, Deluxe, 
-                and Super Deluxe categories. Every room is equipped with whisper-quiet split air-conditioning, high-speed Wi-Fi, 
-                flat-screen televisions, sanitized linens, and round-the-clock hot water.
+                Located conveniently in Midnapore, our property spans three meticulously designed floors featuring 9 well-appointed rooms 
+                across Standard, Deluxe, and Super Deluxe categories. Each room provides whisper-quiet air conditioning, high-speed Wi-Fi, 
+                flatscreen televisions, sanitized linens, and round-the-clock hot water.
               </p>
               <p className="about-paragraph">
-                Complementing our rooms is our signature in-house restaurant, known across the region for its authentic Indian, 
-                Tandoor, Chinese, and regional specialties. Whether you are visiting for an overnight business stopover, a family 
-                celebration, or an extended holiday, our dedicated staff ensures you feel completely at home.
+                Complementing our accommodations is our signature in-house restaurant, renowned for traditional Bengali delicacies, fragrant 
+                biryanis, authentic North Indian recipes, and savoury tandoor dishes. Whether you are visiting for business, family travels, or 
+                a celebratory event, Amontron is your home away from home.
               </p>
 
               <div className="about-stats-grid">
@@ -65,9 +68,8 @@ export default function AboutPage({ onOpenBooking }) {
 
             <div className="about-editorial-images">
               <div className="editorial-image-frame main-art-frame">
-                <img src="/images/art5.jpg" alt="Bengali Couple" />
+                <img src="/images/art5.jpg" alt="Bengali Hospitality Artwork" />
               </div>
-              <img src="/images/art3.jpg" className="editorial-art-overlay" alt="Decorative Overlay" />
             </div>
           </div>
         </div>
@@ -86,22 +88,22 @@ export default function AboutPage({ onOpenBooking }) {
               <div className="pillar-icon-wrap">
                 <ShieldCheck size={28} className="text-terracotta" />
               </div>
-              <h3>Immaculate Cleanliness</h3>
-              <p>Rigorous hygiene and disinfection protocols. Fresh, crisp linens and spotless bathrooms in every room.</p>
+              <h3>Cleanliness &amp; Comfort</h3>
+              <p>Rigorous hygiene protocols, sanitized rooms, crisp fresh linens, and pristine bathrooms for uninterrupted relaxation.</p>
             </div>
             <div className="editorial-pillar-card">
               <div className="pillar-icon-wrap">
                 <Heart size={28} className="text-terracotta" />
               </div>
-              <h3>Warm Personal Care</h3>
-              <p>Round-the-clock front desk and prompt room service ensuring every guest requirement is promptly met.</p>
+              <h3>Warm Hospitality</h3>
+              <p>Attentive 24-hour front desk team and prompt room service ensuring every guest feels valued, comfortable, and cared for.</p>
             </div>
             <div className="editorial-pillar-card">
               <div className="pillar-icon-wrap">
                 <Award size={28} className="text-terracotta" />
               </div>
-              <h3>Exceptional Dining</h3>
-              <p>Fresh ingredients, authentic recipes, and hygienic preparation in our in-house multi-cuisine restaurant.</p>
+              <h3>Authentic Bengali Flavours</h3>
+              <p>Fresh local ingredients, traditional spice blends, and authentic recipes prepared hygienically by our expert culinary team.</p>
             </div>
           </div>
         </div>
@@ -112,11 +114,15 @@ export default function AboutPage({ onOpenBooking }) {
         <img src="/images/art6.jpg" className="cta-bg-art" alt=""/>
         <div className="cta-overlay"></div>
         <div className="section-wrapper text-center relative z-2">
-          <h2 className="cta-heading">Ready to Experience Amontron?</h2>
-          <p className="cta-desc">Book your stay directly with us for guaranteed best rates and personalized service.</p>
+          <h2 className="cta-heading">
+            Experience Amontron Today
+          </h2>
+          <p className="cta-desc">
+            Book your stay directly with us for guaranteed best rates and personalized service.
+          </p>
           <div className="cta-actions">
-            <Link to="/rooms" className="btn-outline-gold">VIEW ACCOMMODATIONS</Link>
-            <button className="btn-terracotta" onClick={() => onOpenBooking({})}>
+            <Link to="/rooms" className="btn-outline-gold">VIEW ROOMS</Link>
+            <button className="btn-terracotta" onClick={() => onOpenBooking && onOpenBooking({})}>
               BOOK YOUR STAY <ArrowRight size={16} className="ml-2" />
             </button>
           </div>

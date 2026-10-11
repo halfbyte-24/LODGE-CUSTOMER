@@ -55,7 +55,7 @@ export default function WelcomeIntro() {
           <div className="about-right-composition">
             <div className="about-hotel-image-wrapper">
               <img 
-                src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=85" 
+                src="/images/art5.jpg" 
                 alt="AMONTRON Accommodations & Ambience" 
                 className="about-hotel-img"
                 onError={(e) => { e.currentTarget.src = '/images/art7.jpg'; }}
